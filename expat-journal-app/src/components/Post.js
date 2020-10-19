@@ -1,17 +1,18 @@
 import React from 'react';
 
 
-const Post = () => {
+const Post = (props) => {
+    const { post } = props;
+    
     return(
         <>
         
             <h1>Post here...</h1>
             <div>
-                <h3>Title: Ocean </h3>
-                <img src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80'/>
-                <p>Body of the post</p>
+                <h2>{post.title}</h2>
+                <img href={post.img_url} />
+                <p>{post.body}</p>
             </div>
-    
         </>
     );
 };
