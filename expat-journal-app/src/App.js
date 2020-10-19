@@ -34,7 +34,7 @@ function App() {
       <ContextObject.Provider>
         <div className="App">
           {/* <h1>Expat Journal</h1>
-          <h2>Login</h2> */}
+          <h2>Login</h2> HELLO TEST */ }
             <Header />
 
             <Route exact path='/posts'>
