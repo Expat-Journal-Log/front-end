@@ -140,6 +140,7 @@ export default function Register() {
 							/>
 						</label>
 						{/* 🎒 PASSWORD */}
+						{/* test */}
 						<label>
 							Password:
 							<input
