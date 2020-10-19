@@ -14,8 +14,10 @@ const registerSchema = yup.object().shape({
 	password: yup.string().required('Password is required'),
 	first_name: yup.string().required('First name is required'),
 	last_name: yup.string().required('Last name is required'),
-	email: yup.string().required('Email is required'),
-	// .email() not sure about the regex yet
+	email: yup
+		.string()
+		.email('Email must be formatted correctly')
+		.required('Email is required'),
 });
 
 // 🎒 Initial Values
@@ -59,7 +61,6 @@ export default function Register() {
 			.validate(value)
 			.then(() => {
 				setRegisterFormErrors({
-					// setErrors({
 					...registerFormErrors,
 					[name]: '',
 				});
@@ -92,7 +93,6 @@ export default function Register() {
 		axios
 			.post('', newUser)
 			.then((res) => {
-				// setUsers([...users, res.data]);
 				setRegisterFormValues(initRegisterFormValues);
 			})
 			.catch((err) => {
@@ -100,20 +100,20 @@ export default function Register() {
 			});
 	};
 
-	// 🎒 I BELIEVE THIS IS WHERE THE ERROR IS
+	// 🎒 I BELIEVE THIS IS UNECCEASSRY BUT LEFT IT FOR NOW IN CASE I'M WRONG
 	// 🎒 use setErrors to set RegisterFormErrors
-	const setErrors = (name, value) => {
-		yup
-			.reach(registerSchema, name)
-			.validate(value)
-			.then(() => setRegisterFormErrors({ ...registerFormErrors, [name]: ' ' }))
-			.catch((err) =>
-				setRegisterFormErrors({
-					...registerFormErrors,
-					[name]: err.registerFormErrors[0],
-				})
-			);
-	};
+	// const setErrors = (name, value) => {
+	// 	yup
+	// 		.reach(registerSchema, name)
+	// 		.validate(value)
+	// 		.then(() => setRegisterFormErrors({ ...registerFormErrors, [name]: ' ' }))
+	// 		.catch((err) =>
+	// 			setRegisterFormErrors({
+	// 				...registerFormErrors,
+	// 				[name]: err.registerFormErrors[0],
+	// 			})
+	// 		);
+	// };
 
 	useEffect(() => {
 		registerSchema.isValid(registerFormValues).then((valid) => {
