@@ -69,3 +69,51 @@ div.container {
 .input {
   margin: 2% 0 2% 10%;
 }
+
+/*  HEADER STYLES */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-top: 30px;
+  width: 100%;
+  padding-right: 80px;
+}
+
+
+
+
+
+/*  HEADER STYLES */
+
+
+/*  POSTS STYLES */
+
+.image-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  height: 80%;
+  justify-content: space-around;
+}
+
+.image-container img {
+  height: 300px;
+  width: 400px;
+}
+
+/*  POSTS STYLES */
+
+
+/* Create a Post Button STYLES */
+ button.createPostButton {
+  position: absolute;
+  top: 55px;
+  right: 50px;
+  
+}
+/* Create a Post Button STYLES */
