@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Posts = () => {
+const Posts = () => {
     return(
         <>
             <h1>Posts here...</h1>
