@@ -44,7 +44,7 @@ export default function Register() {
 	const [registerFormErrors, setRegisterFormErrors] = useState(
 		initRegisterFormErrors
 	);
-	const [users, setUsers] = useState({ setRegisterFormValues });
+	// const [users, setUsers] = useState({ setRegisterFormValues });
 	const [disabledSubmitButton, setDisabledSubmitButton] = useState(
 		initDisabledSubmitButton
 	);
@@ -59,14 +59,16 @@ export default function Register() {
 			.validate(value)
 			.then(() => {
 				setRegisterFormErrors({
+					// setErrors({
 					...registerFormErrors,
 					[name]: '',
 				});
 			})
 			.catch((err) => {
+				console.log('error', err);
 				setRegisterFormErrors({
 					...registerFormErrors,
-					[name]: err.registerFormErrors[0],
+					[name]: err.errors[0],
 				});
 			});
 		setRegisterFormValues({
@@ -85,11 +87,12 @@ export default function Register() {
 			last_name: registerFormValues.last_name,
 			email: registerFormValues.email,
 		};
+		console.log('New User', newUser);
 
 		axios
 			.post('', newUser)
 			.then((res) => {
-				setUsers([...users, res.data]);
+				// setUsers([...users, res.data]);
 				setRegisterFormValues(initRegisterFormValues);
 			})
 			.catch((err) => {
@@ -103,7 +106,7 @@ export default function Register() {
 		yup
 			.reach(registerSchema, name)
 			.validate(value)
-			.then(() => setErrors({ ...registerFormErrors, [name]: ' ' }))
+			.then(() => setRegisterFormErrors({ ...registerFormErrors, [name]: ' ' }))
 			.catch((err) =>
 				setRegisterFormErrors({
 					...registerFormErrors,
@@ -125,7 +128,7 @@ export default function Register() {
 					<Typography variant='h1' component='h1'>
 						Expat Journal
 					</Typography>
-					<form submitRegisterForm={submitRegisterForm}>
+					<form onSubmit={submitRegisterForm}>
 						{/* 🎒 USERNAME */}
 						<label>
 							Username:
@@ -185,9 +188,7 @@ export default function Register() {
 							<div>{registerFormErrors.email}</div>
 						</div>
 						{/* 🎒 SUBMIT */}
-						<button disabledSubmitButton={disabledSubmitButton}>
-							Register
-						</button>
+						<button disabled={disabledSubmitButton}>Register</button>
 					</form>
 				</CardContent>
 			</Card>
