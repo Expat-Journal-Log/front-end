@@ -11,7 +11,7 @@ function Login() {
                 <CardContent>
               <Typography variant='h2' component='h2'>Expat Journal</Typography>
               <Typography variant='h3' component='h3' gutterBottom >Login</Typography>
-               <h2>TEST</h2>
+              
 
             <CardMedia 
             component='img'
