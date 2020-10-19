@@ -48,14 +48,72 @@ height: 100%;
 
 .page {
   height: 100%;
-  
-}
-
-div.container {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  
+  background-image: url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.container {
+  opacity: 90%;
+  padding: 15%;
+}
+
+.errors {
+  color: red;
+}
+
+.input {
+  margin: 2% 0 2% 10%;
+}
+
+/*  HEADER STYLES */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-top: 30px;
+  width: 100%;
+  padding-right: 80px;
+}
+
+
+
+
+
+/*  HEADER STYLES */
+
+
+/*  POSTS STYLES */
+
+.image-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  height: 80%;
+  justify-content: space-around;
+}
+
+.image-container img {
+  height: 300px;
+  width: 400px;
+}
+
+/*  POSTS STYLES */
+
+
+/* Create a Post Button STYLES */
+ button.createPostButton {
+  position: absolute;
+  top: 55px;
+  right: 50px;
   
 }
+/* Create a Post Button STYLES */
