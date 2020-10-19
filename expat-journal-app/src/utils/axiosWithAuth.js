@@ -3,9 +3,11 @@ import axios from "axios";
 //      AXIOS      //
 /////////////////////
 const axiosWithAuth = () => {
+  const token = localStorage.getItem()
+  
   return axios.create({
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: token
     },
     baseURL: "https://expatjournal-api.herokuapp.com/",
   });
