@@ -11,7 +11,7 @@ function App() {
     <div className="App">
    {/* <h1>Expat Journal</h1>
    <h2>Login</h2> */}
-  <Header />
+    <Header />
     <Route exact path='/posts'>
     
     <Posts /> 
