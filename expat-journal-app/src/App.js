@@ -1,12 +1,29 @@
 import React from 'react';
 import './App.css';
+<<<<<<< HEAD
+=======
 import Login from './components/Login';
 import Posts from './components/Posts';
 import Header from './components/Header';
 import PostForm from './components/PostForm';
+>>>>>>> 2dfdecd44fb6029fa351a26a52346153c183b6df
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
+<<<<<<< HEAD
+	return (
+		<Router>
+			<div className='App'>
+				<Route exact path='/'>
+					{/* <Login />  */}
+					<Register />
+				</Route>
+			</div>
+		</Router>
+	);
+=======
 
 
   return (
@@ -31,6 +48,7 @@ function App() {
     </div>
     </Router>
   );
+>>>>>>> 2dfdecd44fb6029fa351a26a52346153c183b6df
 }
 
 export default App;
