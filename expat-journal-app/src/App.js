@@ -11,14 +11,14 @@ function App() {
     <div className="App">
    {/* <h1>Expat Journal</h1>
    <h2>Login</h2> */}
-
+  <Header />
     <Route exact path='/posts'>
-    <Header />
+    
     <Posts /> 
     </Route>
 
     <Route exact path='/'>
-    <Header />
+    
     <Login /> 
     </Route>
 
