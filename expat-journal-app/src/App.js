@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Posts from './components/Posts';
 import Header from './components/Header';
 import PostForm from './components/PostForm';
+import Register from './components/Register';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ContextObject } from './context/context';
 
@@ -45,10 +46,8 @@ function App() {
             <Route exact path='/'>
             <Login /> 
             </Route>
-
-
-          </div>
-        </ContextObject.Provider>
+        </div>
+      </ContextObject.Provider>
     </Router>
   );
 }
