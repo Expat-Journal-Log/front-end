@@ -8,6 +8,8 @@ import Register from './components/Register';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ContextObject } from './context/context';
 
+import axiosWithAuth from './utils/axiosWithAuth';
+
 const initialState = {
   posts: [],
   error: ''
