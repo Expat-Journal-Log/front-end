@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 
 const initialValues = {
-    title = '',
-    body = '',
-    imageUrl = ''
+    title: '',
+    body:  '',
+    imageUrl: ''
 };
 
 const PostForm = () => {
     const [formValues, setFormValues] = useState(initialValues);
 
-    handleChanges = e => {
+    const handleChanges = e => {
         setFormValues({
             ...formValues,
             [e.target.name]: e.target.value
         });
     };
 
-    handleSubmit = e => {
+     const handleSubmit = e => {
         e.preventDefault();
     };
 

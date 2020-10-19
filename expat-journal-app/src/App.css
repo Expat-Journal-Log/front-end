@@ -67,10 +67,15 @@ div.container {
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: first baseline;
+  justify-content: space-between;
   padding-left: 50px;
   padding-top: 30px;
+  width: 100%;
+  padding-right: 80px;
 }
+
+
+
 
 
 /*  HEADER STYLES */
@@ -95,3 +100,12 @@ div.container {
 
 /*  POSTS STYLES */
 
+
+/* Create a Post Button STYLES */
+ button.createPostButton {
+  position: absolute;
+  top: 55px;
+  right: 50px;
+  
+}
+/* Create a Post Button STYLES */

@@ -1,8 +1,11 @@
 import React from 'react';
+import HeaderPostButton from './HeaderPostButton';
+
 
 const Posts = () => {
     return(
         <>
+            <HeaderPostButton />
             <h1>Posts here...</h1>
             <div className='image-container'>
             <img src='https://images.unsplash.com/photo-1585567512124-dbfaa0e7eee5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80' />
