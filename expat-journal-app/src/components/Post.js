@@ -1,13 +1,12 @@
 import React from 'react';
-
+import HeaderPostButton from './HeaderPostButton';
 
 const Post = (props) => {
     const { post } = props;
-    
+
     return(
         <>
-        
-            <h1>Post here...</h1>
+            <HeaderPostButton editing='true' />
             <div>
                 <h2>{post.title}</h2>
                 <img href={post.img_url} />

@@ -7,17 +7,21 @@ import axios from 'axios'
 import { Card, CardContent, Typography, Button, CardActions} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 // Material UI Styling
-// const useStyles = makeStyles({
-//     headTitle: {
-//       maxWidth: 345,
-//     },
-//     media: {
-//       height: 140,
-//     },
-//   });
 
+const useStyles = makeStyles({
+    loginBtn: {
+        background: '#12c9c9',
+        border: 0,
+        borderRadius: 3,
+        height: 35,
+        padding: '0 10px',
+        margin: '5%',
+    },
+    title: {
+        padding: '30px'
+    }
+})
 
 const initialFormValues = {
     username: '',
@@ -31,6 +35,8 @@ const initialFormValues = {
 const initialDisabled = true;
   
 function Login() {
+    const classes = useStyles()
+
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -95,15 +101,15 @@ function Login() {
             <div className='container'>
                 <Card>
                     <CardContent>
-                        <Typography variant='h3' component='h3'>Expat Journal</Typography>
+                        <Typography className={classes.title} variant='h3' component='h3'>Expat Journal</Typography>
                 <form className='form-container' onSubmit={onSubmit}>
                 <div>
                     <label>Username: 
-                        <input className='input' type='username' name='username' onChange={onChange} value={formValues.username} />
+                        <input className='input' type='username' name='username' onChange={onChange} value={formValues.username} placeholder='enter username here' />
                     </label>
                     <br></br>
-                    <label>Password: 
-                        <input className='input' type='password' name='password' onChange={onChange} value={formValues.password} />
+                    <label>Password:   
+                        <input className='input' type='password' name='password' onChange={onChange} value={formValues.password} placeholder='enter password here'/>
                     </label>
                 </div>
                 <div className='errors'>
@@ -111,7 +117,7 @@ function Login() {
                     <div>{formErrors.password}</div>
                 </div>
                 <div>
-                    <Button className='homeLoginBtn' disabled={disabled}>Login</Button>
+                    <Button className={classes.loginBtn} disabled={disabled}>Login</Button>
                     <p>OR</p>
                     <Link to='/register'>Register</Link>
                 </div>                
