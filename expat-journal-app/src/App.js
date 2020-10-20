@@ -8,7 +8,7 @@ import Register from './components/Register';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ContextObject } from './context/context';
 
-import axiosWithAuth from './utils/axiosWithAuth';
+// import axiosWithAuth from './utils/axiosWithAuth';
 
 const initialState = {
   posts: [],
@@ -18,16 +18,16 @@ const initialState = {
 function App() {
   const [posts, setPosts] = useState(initialState.posts);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/posts`)
-      .then(res => {
-        console.log('App: useEffect: DT: ', res);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get(`/posts`)
+  //     .then(res => {
+  //       console.log('App: useEffect: DT: ', res);
 
-        setPosts(res.data);
-      })
-      .catch(err => console.error('App: useEffect: DT: Error: ', err));
-  }, []);
+  //       setPosts(res.data);
+  //     })
+  //     .catch(err => console.error('App: useEffect: DT: Error: ', err));
+  // }, []);
 
   return (
     <Router>
@@ -47,6 +47,9 @@ function App() {
 
             <Route exact path='/'>
             <Login /> 
+            </Route>
+            <Route exact path='/register'>
+            <Register /> 
             </Route>
         </div>
       </ContextObject.Provider>
