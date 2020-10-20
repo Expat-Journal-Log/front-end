@@ -5,15 +5,59 @@ import {
 	CardContent,
 	CardMedia,
 	Typography,
+	makeStyles,
 } from '@material-ui/core';
 import * as yup from 'yup';
 import axios from 'axios';
 
+// 🎒 Style
+const useStyles = makeStyles({
+	container: {
+		// border: '1px solid green',
+		display: 'flex',
+		flexFlow: 'column nowrap',
+		alignItems: 'center',
+		justifyContent: 'center',
+		height: '100vh',
+		backgroundImage:
+			"url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80')",
+	},
+	card: {
+		// border: '1px solid blue',
+		display: 'flex',
+		flexFlow: 'row nowrap',
+		justifyContent: 'center',
+		alignItems: 'center',
+		opacity: '0.9',
+	},
+	form: {
+		// border: '1px solid red',
+		display: 'flex',
+		flexFlow: 'column nowrap',
+		// alignItems: 'flex-start',
+		margin: '0 auto',
+	},
+	formSection: {
+		// border: '1px solid green',
+		marginBottom: '2%',
+	},
+	submit: {
+		width: '20%',
+		margin: '0 auto',
+	},
+	// logo: {
+	// 	border: '1px solid yellow',
+	// 	height: '11rem',
+	// },
+});
+
 const registerSchema = yup.object().shape({
+	// need to validate that username hasn't been used before
 	username: yup.string().required('Username is required'),
 	password: yup.string().required('Password is required'),
 	first_name: yup.string().required('First name is required'),
 	last_name: yup.string().required('Last name is required'),
+	// need to validate that email hasn't been used before
 	email: yup
 		.string()
 		.email('Email must be formatted correctly')
@@ -37,8 +81,9 @@ const initRegisterFormErrors = {
 };
 const initDisabledSubmitButton = true;
 
-// 🎒
 export default function Register() {
+	// 🎒 Style
+	const classes = useStyles();
 	// 🎒 State
 	const [registerFormValues, setRegisterFormValues] = useState(
 		initRegisterFormValues
@@ -122,15 +167,20 @@ export default function Register() {
 	}, [registerFormValues]);
 
 	return (
-		<Container>
-			<Card>
+		<Container className={classes.container}>
+			<Card className={classes.card}>
 				<CardContent>
+					{/* <CardMedia
+						className={classes.logo}
+						image={require('../assets/expatLogo.png')}
+						title='island in italy'
+					/> */}
 					<Typography variant='h1' component='h1'>
 						Expat Journal
 					</Typography>
-					<form onSubmit={submitRegisterForm}>
+					<form onSubmit={submitRegisterForm} className={classes.form}>
 						{/* 🎒 USERNAME */}
-						<label>
+						<label className={classes.formSection}>
 							Username:
 							<input
 								onChange={onChange}
@@ -141,7 +191,7 @@ export default function Register() {
 						</label>
 						{/* 🎒 PASSWORD */}
 						{/* test */}
-						<label>
+						<label className={classes.formSection}>
 							Password:
 							<input
 								onChange={onChange}
@@ -151,7 +201,7 @@ export default function Register() {
 							/>
 						</label>
 						{/* 🎒 FIRST NAME */}
-						<label>
+						<label className={classes.formSection}>
 							First Name:
 							<input
 								onChange={onChange}
@@ -161,7 +211,7 @@ export default function Register() {
 							/>
 						</label>
 						{/* 🎒 LAST NAME */}
-						<label>
+						<label className={classes.formSection}>
 							Last Name:
 							<input
 								onChange={onChange}
@@ -171,7 +221,7 @@ export default function Register() {
 							/>
 						</label>
 						{/* 🎒 EMAIL */}
-						<label>
+						<label className={classes.formSection}>
 							Email:
 							<input
 								onChange={onChange}
@@ -189,7 +239,9 @@ export default function Register() {
 							<div>{registerFormErrors.email}</div>
 						</div>
 						{/* 🎒 SUBMIT */}
-						<button disabled={disabledSubmitButton}>Register</button>
+						<button className={classes.submit} disabled={disabledSubmitButton}>
+							Register
+						</button>
 					</form>
 				</CardContent>
 			</Card>
