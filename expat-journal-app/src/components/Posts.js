@@ -4,11 +4,12 @@ import HeaderPostButton from './HeaderPostButton';
 import Post from './Post';
 
 const Posts = () => {
-    const { posts } = useContext(ContextObject);
+    const data = useContext(ContextObject);
+
     return(
         <>
-            <HeaderPostButton />
-            {posts.map(post => (
+            <HeaderPostButton editing='false' />
+            {data.initialState.posts.map(post => (
                 <Post key={post.id} post={post} />
             ))}
             <div className='image-container'>

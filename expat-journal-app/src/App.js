@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Login from './components/Login';
 import Posts from './components/Posts';
+import Post from './components/Post';
 import Header from './components/Header';
 import PostForm from './components/PostForm';
 import Register from './components/Register';
@@ -11,7 +12,7 @@ import { ContextObject } from './context/context';
 import axiosWithAuth from './utils/axiosWithAuth';
 
 const initialState = {
-  posts: [],
+  posts: [{title: 'test', id: 1, body: 'hello world', created_at: Date.now(), img_url: ''}],
   error: ''
 };
 
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <Router>
-      <ContextObject.Provider>
+      <ContextObject.Provider value={{initialState}}>
         <div className="App">
           {/* <h1>Expat Journal</h1>
           <h2>Login</h2> */}
@@ -40,6 +41,10 @@ function App() {
             <Route exact path='/posts'>
             <Posts /> 
             </Route>
+
+            {/* <Route exact path='/post'>
+              <Post />
+            </Route> */}
 
             <Route exact path='/create-post'>
             <PostForm /> 
