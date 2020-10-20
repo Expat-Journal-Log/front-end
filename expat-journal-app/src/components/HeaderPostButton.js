@@ -1,11 +1,19 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-function HeaderPostButton() {
+function HeaderPostButton(props) {
+    const { editing } = props;
+console.log(editing);
     return (
-        <div className='createPostButton'>
-                <p className='createPostText'>create a post </p>
-                <Link to='/createpost'><img src="https://img.icons8.com/ios/50/000000/plus.png"/></Link>
+        <div>
+            {editing === 'true' ? (
+                <>
+                    <button>Update Post</button>
+                    <button>Delete Post</button>
+                </>
+            ) : (
+                <button className='createPostButton'>create a post</button>
+            )}
         </div>
     )
 }
