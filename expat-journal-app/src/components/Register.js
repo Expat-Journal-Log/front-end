@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
 	Container,
 	Card,
 	CardContent,
 	CardMedia,
-	Typography,
 	makeStyles,
+	TextField,
+	Button,
 } from '@material-ui/core';
 import * as yup from 'yup';
 import axios from 'axios';
+import logo from '../assets/expatLogLogo.svg';
+import { blue } from '@material-ui/core/colors';
 
-// 🎒 Style
 const useStyles = makeStyles({
 	container: {
-		// border: '1px solid green',
+		// border: '1px solid red',
 		display: 'flex',
 		flexFlow: 'column nowrap',
 		alignItems: 'center',
@@ -23,32 +26,69 @@ const useStyles = makeStyles({
 			"url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80')",
 	},
 	card: {
-		// border: '1px solid blue',
-		display: 'flex',
-		flexFlow: 'row nowrap',
-		justifyContent: 'center',
-		alignItems: 'center',
-		opacity: '0.9',
-	},
-	form: {
 		// border: '1px solid red',
 		display: 'flex',
+		flexDirection: 'column',
+		width: '40rem',
+		alignItems: 'center',
+		marginBottom: '2rem',
+		padding: '2rem 0',
+		fontSize: '1.6rem',
+	},
+	logo: {
+		width: '10rem',
+		margin: '2rem 0 1rem',
+	},
+	cardContent: {
+		display: 'flex',
 		flexFlow: 'column nowrap',
-		// alignItems: 'flex-start',
-		margin: '0 auto',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	form: {
+		// border: '1px solid pink',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		margin: '2rem 0 0',
+		padding: '0',
 	},
 	formSection: {
 		// border: '1px solid green',
-		marginBottom: '2%',
+		width: '32rem',
+		fontSize: '1.6rem',
+		margin: '0 0 1rem',
 	},
-	submit: {
-		width: '20%',
-		margin: '0 auto',
+	input: {
+		fontSize: '1.4rem',
 	},
-	// logo: {
-	// 	border: '1px solid yellow',
-	// 	height: '11rem',
-	// },
+	inputLabel: {
+		fontSize: '1.4rem',
+	},
+	errors: {
+		color: '#FF0E0A',
+		margin: '1rem 0 1.6rem',
+	},
+	submitBtn: {
+		// border: '1px solid green',
+		padding: '0.5rem 0',
+		textTransform: 'capitalize',
+		color: '#ffffff',
+		backgroundColor: '#3590F3',
+		'&:disabled': {
+			color: '#ffffff',
+			backgroundColor: '#65ABF6',
+		},
+		'&:hover': {
+			color: '#ffffff',
+			backgroundColor: '#3590F3',
+		},
+	},
+	loginLink: {
+		color: '#3590F3',
+		textDecoration: 'none',
+		fontWeight: '700',
+	},
 });
 
 const registerSchema = yup.object().shape({
@@ -82,7 +122,6 @@ const initRegisterFormErrors = {
 const initDisabledSubmitButton = true;
 
 export default function Register() {
-	// 🎒 Style
 	const classes = useStyles();
 	// 🎒 State
 	const [registerFormValues, setRegisterFormValues] = useState(
@@ -91,7 +130,6 @@ export default function Register() {
 	const [registerFormErrors, setRegisterFormErrors] = useState(
 		initRegisterFormErrors
 	);
-	// const [users, setUsers] = useState({ setRegisterFormValues });
 	const [disabledSubmitButton, setDisabledSubmitButton] = useState(
 		initDisabledSubmitButton
 	);
@@ -145,21 +183,6 @@ export default function Register() {
 			});
 	};
 
-	// 🎒 I BELIEVE THIS IS UNECCEASSRY BUT LEFT IT FOR NOW IN CASE I'M WRONG
-	// 🎒 use setErrors to set RegisterFormErrors
-	// const setErrors = (name, value) => {
-	// 	yup
-	// 		.reach(registerSchema, name)
-	// 		.validate(value)
-	// 		.then(() => setRegisterFormErrors({ ...registerFormErrors, [name]: ' ' }))
-	// 		.catch((err) =>
-	// 			setRegisterFormErrors({
-	// 				...registerFormErrors,
-	// 				[name]: err.registerFormErrors[0],
-	// 			})
-	// 		);
-	// };
-
 	useEffect(() => {
 		registerSchema.isValid(registerFormValues).then((valid) => {
 			setDisabledSubmitButton(!valid);
@@ -167,84 +190,108 @@ export default function Register() {
 	}, [registerFormValues]);
 
 	return (
-		<Container className={classes.container}>
-			<Card className={classes.card}>
-				<CardContent>
-					{/* <CardMedia
+		<>
+			<Container className={classes.container}>
+				<Card className={classes.card}>
+					<CardMedia
+						src={logo}
+						component='img'
 						className={classes.logo}
-						image={require('../assets/expatLogo.png')}
-						title='island in italy'
-					/> */}
-					<Typography variant='h1' component='h1'>
-						Expat Journal
-					</Typography>
-					<form onSubmit={submitRegisterForm} className={classes.form}>
-						{/* 🎒 USERNAME */}
-						<label className={classes.formSection}>
-							Username:
-							<input
+						// image={require('../assets/expatLogoCircle.png')}
+						title='The Expat Log'
+					/>
+					<CardContent className={classes.cardContent}>
+						<h2>Sign up to see posts from your friends.</h2>
+						<form className={classes.form}>
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='username'
+								label='Username'
+								name='username'
+								type='text'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.username}
-								type='text'
-								name='username'
 							/>
-						</label>
-						{/* 🎒 PASSWORD */}
-						{/* test */}
-						<label className={classes.formSection}>
-							Password:
-							<input
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='password'
+								label='Password'
+								name='password'
+								type='password'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.password}
-								type='password'
-								name='password'
 							/>
-						</label>
-						{/* 🎒 FIRST NAME */}
-						<label className={classes.formSection}>
-							First Name:
-							<input
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='first_name'
+								label='First Name'
+								name='first_name'
+								type='text'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.first_name}
-								type='text'
-								name='first_name'
 							/>
-						</label>
-						{/* 🎒 LAST NAME */}
-						<label className={classes.formSection}>
-							Last Name:
-							<input
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='last_name'
+								label='Last Name'
+								name='last_name'
+								type='text'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.last_name}
-								type='text'
-								name='last_name'
 							/>
-						</label>
-						{/* 🎒 EMAIL */}
-						<label className={classes.formSection}>
-							Email:
-							<input
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='email'
+								label='Email'
+								name='email'
+								type='email'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.email}
-								type='email'
-								name='email'
 							/>
-						</label>
-						{/* 🎒 VALIDATION ERRORS */}
-						<div className='errors'>
-							<div>{registerFormErrors.username}</div>
-							<div>{registerFormErrors.password}</div>
-							<div>{registerFormErrors.first_name}</div>
-							<div>{registerFormErrors.last_name}</div>
-							<div>{registerFormErrors.email}</div>
-						</div>
-						{/* 🎒 SUBMIT */}
-						<button className={classes.submit} disabled={disabledSubmitButton}>
-							Register
-						</button>
-					</form>
-				</CardContent>
-			</Card>
-		</Container>
+
+							{/* 🎒 VALIDATION ERRORS */}
+							<div className={classes.errors}>
+								<div>{registerFormErrors.username}</div>
+								<div>{registerFormErrors.password}</div>
+								<div>{registerFormErrors.first_name}</div>
+								<div>{registerFormErrors.last_name}</div>
+								<div>{registerFormErrors.email}</div>
+							</div>
+
+							<Button
+								disabled={disabledSubmitButton}
+								variant='contained'
+								className={`${classes.formSection} ${classes.submitBtn}`}
+							>
+								Register
+							</Button>
+						</form>
+					</CardContent>
+				</Card>
+				<Card className={classes.card}>
+					<p>
+						Have an account?{' '}
+						<Link to='/' className={classes.loginLink}>
+							Log In
+						</Link>
+					</p>
+				</Card>
+			</Container>
+		</>
 	);
 }
