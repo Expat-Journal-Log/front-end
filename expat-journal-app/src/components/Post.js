@@ -9,8 +9,8 @@ const Post = (props) => {
             <HeaderPostButton editing='true' />
             <div>
                 <h2>{post.title}</h2>
-                <img href={post.img_url} />
-                <p>{post.body}</p>
+                <img src={`${post.imageURL}`} className={`${post.imageURL ? '':'hide'}`}/>
+                <p>{post.description}</p>
             </div>
         </>
     );

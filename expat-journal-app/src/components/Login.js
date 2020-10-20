@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
+import { useHistory } from 'react-router-dom';
 import '../App';
 import * as yup from 'yup'
 import schema from '../validation/login_schema'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { Card, CardContent, Typography, Button, CardActions} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -36,17 +37,21 @@ const initialDisabled = true;
   
 function Login() {
     const classes = useStyles()
+    const { push } = useHistory();
 
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
 
     const formSubmit = () => {
-        axios
-            .post('https://reqres.in/api/users', formValues)
+        axiosWithAuth()
+            .post('/login', formValues)
             .then(res => {
-                console.log(res)
-                console.log('login successful!')
+                console.log(res);
+                console.log('login successful!');
+
+                localStorage.setItem('token', res.data.token);
+                push('/posts');
             })
             .catch(err => {
                 console.log(err)
@@ -102,7 +107,7 @@ function Login() {
                 <Card>
                     <CardContent>
                         <Typography className={classes.title} variant='h3' component='h3'>Expat Journal</Typography>
-                <form className='form-container' onSubmit={onSubmit}>
+                <form className='form-container' onClick={onSubmit}>
                 <div>
                     <label>Username: 
                         <input className='input' type='username' name='username' onChange={onChange} value={formValues.username} placeholder='enter username here' />
@@ -117,7 +122,12 @@ function Login() {
                     <div>{formErrors.password}</div>
                 </div>
                 <div>
-                    <Button className={classes.loginBtn} disabled={disabled}>Login</Button>
+                    <Button
+                        className={classes.loginBtn}
+                        disabled={disabled}
+                    >
+                        Login
+                    </Button>
                     <p>OR</p>
                     <Link to='/register'>Register</Link>
                 </div>                

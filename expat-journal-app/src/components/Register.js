@@ -7,13 +7,11 @@ import {
 	Typography,
 } from '@material-ui/core';
 import * as yup from 'yup';
-import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const registerSchema = yup.object().shape({
 	username: yup.string().required('Username is required'),
 	password: yup.string().required('Password is required'),
-	first_name: yup.string().required('First name is required'),
-	last_name: yup.string().required('Last name is required'),
 	email: yup
 		.string()
 		.email('Email must be formatted correctly')
@@ -24,15 +22,11 @@ const registerSchema = yup.object().shape({
 const initRegisterFormValues = {
 	username: '',
 	password: '',
-	first_name: '',
-	last_name: '',
 	email: '',
 };
 const initRegisterFormErrors = {
 	username: '',
 	password: '',
-	first_name: '',
-	last_name: '',
 	email: '',
 };
 const initDisabledSubmitButton = true;
@@ -82,16 +76,15 @@ export default function Register() {
 	const submitRegisterForm = (evt) => {
 		evt.preventDefault();
 		const newUser = {
+            
 			username: registerFormValues.username,
 			password: registerFormValues.password,
-			first_name: registerFormValues.first_name,
-			last_name: registerFormValues.last_name,
 			email: registerFormValues.email,
 		};
 		console.log('New User', newUser);
 
-		axios
-			.post('', newUser)
+		axiosWithAuth()
+			.post('/signup', newUser)
 			.then((res) => {
 				setRegisterFormValues(initRegisterFormValues);
 			})
@@ -150,26 +143,6 @@ export default function Register() {
 								name='password'
 							/>
 						</label>
-						{/* 🎒 FIRST NAME */}
-						<label>
-							First Name:
-							<input
-								onChange={onChange}
-								value={registerFormValues.first_name}
-								type='text'
-								name='first_name'
-							/>
-						</label>
-						{/* 🎒 LAST NAME */}
-						<label>
-							Last Name:
-							<input
-								onChange={onChange}
-								value={registerFormValues.last_name}
-								type='text'
-								name='last_name'
-							/>
-						</label>
 						{/* 🎒 EMAIL */}
 						<label>
 							Email:
@@ -184,8 +157,6 @@ export default function Register() {
 						<div className='errors'>
 							<div>{registerFormErrors.username}</div>
 							<div>{registerFormErrors.password}</div>
-							<div>{registerFormErrors.first_name}</div>
-							<div>{registerFormErrors.last_name}</div>
 							<div>{registerFormErrors.email}</div>
 						</div>
 						{/* 🎒 SUBMIT */}

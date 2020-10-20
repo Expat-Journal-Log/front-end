@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 function HeaderPostButton(props) {
     const { editing } = props;
-console.log(editing);
+
     return (
         <div>
             {editing === 'true' ? (
@@ -12,7 +12,9 @@ console.log(editing);
                     <button>Delete Post</button>
                 </>
             ) : (
-                <button className='createPostButton'>create a post</button>
+                <Link to='/create-post'>
+                    <button className='createPostButton'>create a post</button>
+                </Link>
             )}
         </div>
     )
