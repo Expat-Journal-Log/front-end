@@ -1,16 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function HeaderPostButton(props) {
     // const classes = useStyles()
 
     const { editing } = props;
 
+    const { id } = useParams();
+
     return (
         <div>
             {editing === 'true' ? (
                 <>
-                    <button>Update Post</button>
+                    <Link to={`/edit-post/${id}`}>
+                        <button>Update Post</button>
+                    </Link>
                     <button>Delete Post</button>
                 </>
             ) : (
