@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'; 
+import React, { useContext, useState, useEffect } from 'react'; 
 import { Link } from 'react-router-dom';
 import { ContextObject } from '../context/context';
 import HeaderPostButton from './HeaderPostButton';

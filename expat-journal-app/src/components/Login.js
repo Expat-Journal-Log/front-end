@@ -28,9 +28,7 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 function Login() {
-
     const classes = useStyles()
-    const { push } = useHistory();
 
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
@@ -44,7 +42,8 @@ function Login() {
                 console.log('login successful!');
 
                 localStorage.setItem('token', res.data.token);
-                push('/posts');
+
+                window.location = '/posts';
             })
             .catch(err => {
                 console.log(err)
@@ -53,7 +52,7 @@ function Login() {
     }
 
 	const onSubmit = (evt) => {
-		evt.preventDefault();
+        evt.preventDefault();
 		formSubmit();
 	};
 
@@ -134,7 +133,8 @@ function Login() {
 						<Button
 							className={`${classes.formSection} ${classes.submitBtn}`}
 							disabled={disabled}
-							variant='contained'
+                            variant='contained'
+                            type='submit'
 						>
 							Login
 						</Button>
