@@ -13,9 +13,8 @@ function HeaderPostButton(props) {
             {editing === 'true' ? (
                 <>
                     <Link to={`/edit-post/${id}`}>
-                        <button>Update Post</button>
+                        <button>Edit Post</button>
                     </Link>
-                    <button>Delete Post</button>
                 </>
             ) : (
                 <Link to='/create-post'>
