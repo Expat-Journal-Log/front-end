@@ -104,7 +104,7 @@ const PostForm = (props) => {
                 <TextField 
                     className={classes.imgUrl} 
                     id="standard-basic" 
-                    label="imageURL"
+                    label="Image Link"
                     name="imageURL"
                     required
                     />
