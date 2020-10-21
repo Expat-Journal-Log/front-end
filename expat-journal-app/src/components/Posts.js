@@ -4,11 +4,13 @@ import { ContextObject } from '../context/context';
 import HeaderPostButton from './HeaderPostButton';
 import Post from './Post';
 
+import './post.css';
+
 const Posts = () => {
     const data = useContext(ContextObject);
 
     return(
-        <div>
+        <div className='post-card'>
             <HeaderPostButton editing='false' />
             {data.postState.posts.map(post => (
                 <Link to={`/post/${post.postId}`}>

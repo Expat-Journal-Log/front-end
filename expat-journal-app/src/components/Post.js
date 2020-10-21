@@ -6,7 +6,7 @@ const Post = (props) => {
 
     return(
         <>
-            <div>
+            <div className='post'>
                 <h2>{post.title}</h2>
                 <img src={`${post.imageURL}`} className={`${post.imageURL ? '':'hide'}`}/>
                 <p>{post.description}</p>
