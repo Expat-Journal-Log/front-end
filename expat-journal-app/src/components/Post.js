@@ -1,8 +1,11 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, Typography } from '@material-ui/core';
+import HeaderPostButton from './HeaderPostButton';
+import useStyles from '../styles/postStyle';
 
 const Post = (props) => {
-    const { post } = props;
+	const classes = useStyles();
+	const { post } = props;
 
     return(
         <>
