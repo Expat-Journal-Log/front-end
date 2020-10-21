@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+// import './App.css';
 import Login from './components/Login';
 import Posts from './components/Posts';
 import Post from './components/Post';
@@ -14,8 +14,8 @@ import { ContextObject } from './context/context';
 import axiosWithAuth from './utils/axiosWithAuth';
 
 const initialState = {
-  posts: [],
-  error: ''
+	posts: [],
+	error: '',
 };
 
 function App() {
