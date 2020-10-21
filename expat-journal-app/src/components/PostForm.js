@@ -61,19 +61,29 @@ const PostForm = (props) => {
      const handleSubmit = e => {
         e.preventDefault();
 
-        axiosWithAuth()
-            .post('/api/posts', formValues)
-            .then(res => {
-                console.log('PostForm: handleSubmit: DT: ', res);
-                
-                setPostState({
-                    ...postState,
-                    posts: [...postState.posts, res.data]
-                });
+        if(editing){
+            axiosWithAuth()
+                .put(`/api/posts/${id}`, formValues)
+                .then(res => {
+                    console.log('PostForm: handleSubmit: DT: ', res);
+                })
+                .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
+        }
+        else{
+            axiosWithAuth()
+                .post('/api/posts', formValues)
+                .then(res => {
+                    console.log('PostForm: handleSubmit: DT: ', res);
+                    
+                    setPostState({
+                        ...postState,
+                        posts: [...postState.posts, res.data]
+                    });
 
-                push('/posts');
-            })
-            .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
+                    push('/posts');
+                })
+                .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
+        }
     };
 
     return(
