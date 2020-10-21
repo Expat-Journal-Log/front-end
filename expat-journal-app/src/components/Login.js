@@ -1,126 +1,151 @@
-import React, {useState, useEffect} from 'react'
-import '../App';
-import * as yup from 'yup'
-import schema from '../validation/login_schema'
-import {Link} from 'react-router-dom'
-import axios from 'axios'
-import { Card, CardContent, Typography, Button, CardActions} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {
+	Container,
+	Card,
+	CardContent,
+	CardMedia,
+	TextField,
+	Button,
+} from '@material-ui/core';
+import useStyles from '../formStyle';
 
-
-// Material UI Styling
-// const useStyles = makeStyles({
-//     headTitle: {
-//       maxWidth: 345,
-//     },
-//     media: {
-//       height: 140,
-//     },
-//   });
-
+import * as yup from 'yup';
+import schema from '../validation/login_schema';
+import axios from 'axios';
+import logo from '../assets/expatLogLogo.svg';
 
 const initialFormValues = {
-    username: '',
-    password: ''
-  }
-  const initialFormErrors = {
-    username: '',
-    password: ''
-  }
+	username: '',
+	password: '',
+};
+const initialFormErrors = {
+	username: '',
+	password: '',
+};
 
 const initialDisabled = true;
-  
+
 function Login() {
-    const [formValues, setFormValues] = useState(initialFormValues)
-    const [formErrors, setFormErrors] = useState(initialFormErrors)
-    const [disabled, setDisabled] = useState(initialDisabled)
+	// 🎒 Style
+	const classes = useStyles();
 
-    const formSubmit = () => {
-        axios
-            .post('https://reqres.in/api/users', formValues)
-            .then(res => {
-                console.log(res)
-                console.log('login successful!')
-            })
-            .catch(err => {
-                console.log(err)
-                console.log('login failed')
-            })
-    }
+	const [formValues, setFormValues] = useState(initialFormValues);
+	const [formErrors, setFormErrors] = useState(initialFormErrors);
+	const [disabled, setDisabled] = useState(initialDisabled);
 
-    const onSubmit = (evt) => {
-        evt.preventDefault();
-        formSubmit();
-      };
-    
-    const onChange = (evt) => {
-        const { name, value } = evt.target;
-        inputChange(name, value);
-      };
+	const formSubmit = () => {
+		axios
+			.post('https://reqres.in/api/users', formValues)
+			.then((res) => {
+				console.log(res);
+				console.log('login successful!');
+			})
+			.catch((err) => {
+				console.log(err);
+				console.log('login failed');
+			});
+	};
 
-    const inputChange = (name, value) => {
-        yup
-            .reach(schema, name)
-            .validate(value)
-            .then(() => {
-                setFormErrors({
-                    ...formErrors,
-                    [name]: ''
-                })
-            })
-            .catch(err => {
-                console.log(err)
-                setFormErrors({
-                    ...formErrors,
-                    [name]: err.errors[0],
-                })
-            })
-            setFormValues({
-                ...formValues,
-                [name]: value,
-            })
-    }
+	const onSubmit = (evt) => {
+		evt.preventDefault();
+		formSubmit();
+	};
 
+	const onChange = (evt) => {
+		const { name, value } = evt.target;
+		inputChange(name, value);
+	};
 
-    useEffect(() => {
-        schema.isValid(formValues).then((valid) => {
-          setDisabled(!valid);
-        });
-      }, [formValues]);
+	const inputChange = (name, value) => {
+		yup
+			.reach(schema, name)
+			.validate(value)
+			.then(() => {
+				setFormErrors({
+					...formErrors,
+					[name]: '',
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+				setFormErrors({
+					...formErrors,
+					[name]: err.errors[0],
+				});
+			});
+		setFormValues({
+			...formValues,
+			[name]: value,
+		});
+	};
 
+	useEffect(() => {
+		schema.isValid(formValues).then((valid) => {
+			setDisabled(!valid);
+		});
+	}, [formValues]);
 
-    return (
-      
-        <div className='page'>
-            <div className='container'>
-                <Card>
-                    <CardContent>
-                        <Typography variant='h3' component='h3'>Expat Journal</Typography>
-                <form className='form-container' onSubmit={onSubmit}>
-                <div>
-                    <label>Username: 
-                        <input className='input' type='username' name='username' onChange={onChange} value={formValues.username} />
-                    </label>
-                    <br></br>
-                    <label>Password: 
-                        <input className='input' type='password' name='password' onChange={onChange} value={formValues.password} />
-                    </label>
-                </div>
-                <div className='errors'>
-                    <div>{formErrors.username}</div>
-                    <div>{formErrors.password}</div>
-                </div>
-                <div>
-                    <Button className='homeLoginBtn' disabled={disabled}>Login</Button>
-                    <p>OR</p>
-                    <Link to='/register'>Register</Link>
-                </div>                
-                </form>
-                    </CardContent>
-                </Card>
-            </div>
-            </div>
-    )
+	return (
+		<Container className={classes.container}>
+			<Card className={classes.card}>
+				<CardMedia
+					src={logo}
+					component='img'
+					className={classes.logo}
+					// image={require('../assets/expatLogoCircle.png')}
+					title='The Expat Log'
+				/>
+				<CardContent className={classes.cardContent}>
+					<form className={classes.form} onSubmit={onSubmit}>
+						<TextField
+							className={classes.formSection}
+							InputProps={{ className: classes.input }}
+							InputLabelProps={{ className: classes.inputLabel }}
+							id='username'
+							label='Username'
+							name='username'
+							type='text'
+							variant='outlined'
+							onChange={onChange}
+							value={formValues.username}
+						/>
+						<TextField
+							className={classes.formSection}
+							InputProps={{ className: classes.input }}
+							InputLabelProps={{ className: classes.inputLabel }}
+							id='password'
+							label='Password'
+							name='password'
+							type='password'
+							variant='outlined'
+							onChange={onChange}
+							value={formValues.password}
+						/>
+						<div className={classes.errors}>
+							<div>{formErrors.username}</div>
+							<div>{formErrors.password}</div>
+						</div>
+						<Button
+							className={`${classes.formSection} ${classes.submitBtn}`}
+							disabled={disabled}
+							variant='contained'
+						>
+							Login
+						</Button>
+					</form>
+				</CardContent>
+			</Card>
+			<Card className={classes.card}>
+				<p>
+					Don't have an account?{' '}
+					<Link to='/register' className={classes.loginLink}>
+						Sign Up
+					</Link>
+				</p>
+			</Card>
+		</Container>
+	);
 }
 
 export default Login;
