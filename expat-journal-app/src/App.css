@@ -12,6 +12,8 @@ html {
 	height: 100%;
 }
 
+/* LOGIN PAGE STYLING  */
+
 .page {
 	height: 100%;
 	display: flex;
@@ -75,4 +77,18 @@ button.createPostButton {
 	top: 55px;
 	right: 50px;
 }
-/* Create a Post Button STYLES */
+
+/* MIGHT BE DUPLICATE 
+.createPostButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 5%;
+  margin-bottom: 1%;
+  margin-right: 2.5%;
+}
+*/
+
+.createPostText {
+  margin-right: 1%;
+}

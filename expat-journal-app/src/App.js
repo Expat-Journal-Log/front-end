@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 // import './App.css';
 import Login from './components/Login';
 import Posts from './components/Posts';
+import Post from './components/Post';
+import PostPage from './components/PostPage';
 import Header from './components/Header';
 import PostForm from './components/PostForm';
 import Register from './components/Register';
+import PrivateRoute from './utils/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ContextObject } from './context/context';
 
@@ -16,46 +19,61 @@ const initialState = {
 };
 
 function App() {
-	const [posts, setPosts] = useState(initialState.posts);
+  const [postState, setPostState] = useState(initialState);
 
-	useEffect(() => {
-		axiosWithAuth()
-			.get(`/posts`)
-			.then((res) => {
-				console.log('App: useEffect: DT: ', res);
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/posts`)
+      .then(res => {
+        console.log('App: useEffect: DT: ', res.data);
 
-				setPosts(res.data);
-			})
-			.catch((err) => console.error('App: useEffect: DT: Error: ', err));
-	}, []);
+        setPostState({
+          ...postState,
+          posts: res.data
+        });
+      })
+      .catch(err => console.error('App: useEffect: DT: Error: ', err));
+  }, []);
 
-	return (
-		<Router>
-			<ContextObject.Provider>
-				<div className='App'>
-					{/* <h1>Expat Journal</h1>
+  return (
+    <Router>
+      <ContextObject.Provider value={{postState, setPostState}}>
+        <div className="App">
+          
+          {/* <h1>Expat Journal</h1>
           <h2>Login</h2> */}
-					{/* <Header /> */}
+            <Header />
 
-					<Route exact path='/posts'>
-						<Posts />
-					</Route>
+            <PrivateRoute
+              exact 
+              path='/posts'
+            > 
+              <Posts />
+            </PrivateRoute>
 
-					<Route exact path='/create-post'>
-						<PostForm />
-					</Route>
+            <Route exact path='/post/:id'>
+              <PostPage />
+            </Route>
 
-					<Route exact path='/register'>
-						<Register />
-					</Route>
+            <Route exact path='/create-post'>
+              <PostForm editing='false' /> 
+            </Route>
 
-					<Route exact path='/'>
-						<Login />
-					</Route>
-				</div>
-			</ContextObject.Provider>
-		</Router>
-	);
+            <Route exact path='/edit-post/:id'>
+              <PostForm editing='true' /> 
+            </Route>
+
+            <Route exact path='/'>
+            <Login /> 
+            </Route>
+
+            <Route exact path='/register'>
+            <Register /> 
+            </Route>
+        </div>
+      </ContextObject.Provider>
+    </Router>
+  );
 }
 
 export default App;

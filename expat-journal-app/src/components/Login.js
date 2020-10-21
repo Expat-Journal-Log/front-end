@@ -15,6 +15,7 @@ import schema from '../validation/login_schema';
 import axios from 'axios';
 import logo from '../assets/expatLogLogo.svg';
 
+
 const initialFormValues = {
 	username: '',
 	password: '',
@@ -27,25 +28,29 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 function Login() {
-	// 🎒 Style
-	const classes = useStyles();
 
-	const [formValues, setFormValues] = useState(initialFormValues);
-	const [formErrors, setFormErrors] = useState(initialFormErrors);
-	const [disabled, setDisabled] = useState(initialDisabled);
+    const classes = useStyles()
+    const { push } = useHistory();
 
-	const formSubmit = () => {
-		axios
-			.post('https://reqres.in/api/users', formValues)
-			.then((res) => {
-				console.log(res);
-				console.log('login successful!');
-			})
-			.catch((err) => {
-				console.log(err);
-				console.log('login failed');
-			});
-	};
+    const [formValues, setFormValues] = useState(initialFormValues)
+    const [formErrors, setFormErrors] = useState(initialFormErrors)
+    const [disabled, setDisabled] = useState(initialDisabled)
+
+    const formSubmit = () => {
+        axiosWithAuth()
+            .post('/login', formValues)
+            .then(res => {
+                console.log(res);
+                console.log('login successful!');
+
+                localStorage.setItem('token', res.data.token);
+                push('/posts');
+            })
+            .catch(err => {
+                console.log(err)
+                console.log('login failed')
+            })
+    }
 
 	const onSubmit = (evt) => {
 		evt.preventDefault();

@@ -11,97 +11,13 @@ import {
 import useStyles from '../formStyle';
 
 import * as yup from 'yup';
-import axios from 'axios';
 import logo from '../assets/expatLogLogo.svg';
-
-// const useStyles = makeStyles({
-// 	container: {
-// 		// border: '1px solid red',
-// 		display: 'flex',
-// 		flexFlow: 'column nowrap',
-// 		alignItems: 'center',
-// 		justifyContent: 'center',
-// 		height: '100vh',
-// 		backgroundImage:
-// 			"url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80')",
-// 	},
-// 	card: {
-// 		// border: '1px solid red',
-// 		display: 'flex',
-// 		flexDirection: 'column',
-// 		width: '40rem',
-// 		alignItems: 'center',
-// 		marginBottom: '2rem',
-// 		padding: '2rem 0',
-// 		fontSize: '1.6rem',
-// 	},
-// 	logo: {
-// 		width: '10rem',
-// 		margin: '2rem 0 1rem',
-// 	},
-// 	cardContent: {
-// 		display: 'flex',
-// 		flexFlow: 'column nowrap',
-// 		alignItems: 'center',
-// 		justifyContent: 'center',
-// 	},
-// 	form: {
-// 		// border: '1px solid pink',
-// 		display: 'flex',
-// 		flexDirection: 'column',
-// 		alignItems: 'center',
-// 		margin: '2rem 0 0',
-// 		padding: '0',
-// 	},
-// 	formSection: {
-// 		// border: '1px solid green',
-// 		width: '32rem',
-// 		fontSize: '1.6rem',
-// 		margin: '0 0 1rem',
-// 	},
-// 	input: {
-// 		fontSize: '1.4rem',
-// 	},
-// 	inputLabel: {
-// 		fontSize: '1.4rem',
-// 	},
-// 	errors: {
-// 		color: '#FF0E0A',
-// 		margin: '1rem 0 1.6rem',
-// 	},
-// 	submitBtn: {
-// 		// border: '1px solid green',
-// 		padding: '0.5rem 0',
-// 		textTransform: 'capitalize',
-// 		color: '#ffffff',
-// 		backgroundColor: '#3590F3',
-// 		'&:disabled': {
-// 			color: '#ffffff',
-// 			backgroundColor: '#65ABF6',
-// 		},
-// 		'&:hover': {
-// 			color: '#ffffff',
-// 			backgroundColor: '#3590F3',
-// 		},
-// 	},
-// 	disclaimer: {
-// 		fontSize: '1.2rem',
-// 		textAlign: 'center',
-// 	},
-// 	loginLink: {
-// 		color: '#3590F3',
-// 		textDecoration: 'none',
-// 		fontWeight: '700',
-// 	},
-// });
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const registerSchema = yup.object().shape({
 	// need to validate that username hasn't been used before
 	username: yup.string().required('Username is required'),
 	password: yup.string().required('Password is required'),
-	first_name: yup.string().required('First name is required'),
-	last_name: yup.string().required('Last name is required'),
-	// need to validate that email hasn't been used before
 	email: yup
 		.string()
 		.email('Email must be formatted correctly')
@@ -112,15 +28,11 @@ const registerSchema = yup.object().shape({
 const initRegisterFormValues = {
 	username: '',
 	password: '',
-	first_name: '',
-	last_name: '',
 	email: '',
 };
 const initRegisterFormErrors = {
 	username: '',
 	password: '',
-	first_name: '',
-	last_name: '',
 	email: '',
 };
 const initDisabledSubmitButton = true;
@@ -169,16 +81,15 @@ export default function Register() {
 	const submitRegisterForm = (evt) => {
 		evt.preventDefault();
 		const newUser = {
+            
 			username: registerFormValues.username,
 			password: registerFormValues.password,
-			first_name: registerFormValues.first_name,
-			last_name: registerFormValues.last_name,
 			email: registerFormValues.email,
 		};
 		console.log('New User', newUser);
 
-		axios
-			.post('', newUser)
+		axiosWithAuth()
+			.post('/signup', newUser)
 			.then((res) => {
 				setRegisterFormValues(initRegisterFormValues);
 			})
@@ -235,30 +146,6 @@ export default function Register() {
 								className={classes.formSection}
 								InputProps={{ className: classes.input }}
 								InputLabelProps={{ className: classes.inputLabel }}
-								id='first_name'
-								label='First Name'
-								name='first_name'
-								type='text'
-								variant='outlined'
-								onChange={onChange}
-								value={registerFormValues.first_name}
-							/>
-							<TextField
-								className={classes.formSection}
-								InputProps={{ className: classes.input }}
-								InputLabelProps={{ className: classes.inputLabel }}
-								id='last_name'
-								label='Last Name'
-								name='last_name'
-								type='text'
-								variant='outlined'
-								onChange={onChange}
-								value={registerFormValues.last_name}
-							/>
-							<TextField
-								className={classes.formSection}
-								InputProps={{ className: classes.input }}
-								InputLabelProps={{ className: classes.inputLabel }}
 								id='email'
 								label='Email'
 								name='email'
@@ -272,8 +159,6 @@ export default function Register() {
 							<div className={classes.errors}>
 								<div>{registerFormErrors.username}</div>
 								<div>{registerFormErrors.password}</div>
-								<div>{registerFormErrors.first_name}</div>
-								<div>{registerFormErrors.last_name}</div>
 								<div>{registerFormErrors.email}</div>
 							</div>
 
