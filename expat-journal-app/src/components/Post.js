@@ -1,5 +1,4 @@
 import React from 'react';
-import HeaderPostButton from './HeaderPostButton';
 
 const Post = (props) => {
     const { post } = props;

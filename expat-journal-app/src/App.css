@@ -39,6 +39,9 @@ div.container {
 } */
 
 /*  HEADER STYLES */
+.hide{
+  display: none;
+}
 
 .header {
 	display: flex;
