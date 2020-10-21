@@ -1,3 +1,4 @@
+import {TextField, makeStyles, Typography, Button} from '@material-ui/core';
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -10,8 +11,28 @@ const initialValues = {
     imageURL: ''
 };
 
+const useStyles = makeStyles({
+    title: {
+        width: '30%',
+        marginTop: '30px'
+    },
+    btn: {
+        margin: '30px',
+        width: '10%'
+    },
+    textbox: {
+        width: '30%'
+    },
+    imgUrl: {
+        margin: '20px',
+        width: '30%'
+    }
+})
+
+
 const PostForm = (props) => {
     const { editing } = props;
+    const classes = useStyles()
 
     const { postState, setPostState } = useContext(ContextObject);
     
@@ -45,34 +66,65 @@ const PostForm = (props) => {
 
     return(
         <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='title'>Title</label>
-                <input
-                    type='text'
-                    name='title'
-                    id='title'
-                    value={formValues.title}
-                    onChange={handleChanges}
+            <Typography component='h3' variant='h4'>Create a New Post</Typography>
+            <form className='form-container' noValidate autoComplete='off' onSubmit={handleSubmit}>
+                <TextField 
+                    className={classes.title} 
+                    id="standard-basic" 
+                    label="Title" 
+                    name='title' 
+                    value={formValues.title} 
+                    onChange={handleChanges} 
+                    required
                 />
-                <label htmlFor='description'>Description</label>
-                <textarea
-                    name='description'
-                    id='description'
-                    value={formValues.description}
+                <br></br>
+                <TextField 
+                    className={classes.textbox} 
+                    id='outlined-basic' 
+                    label="Body" 
+                    multiline 
+                    name='body' 
+                    value={formValues.body} 
                     onChange={handleChanges}
-                />
-                <label htmlFor='imageURL'>Image</label>
-                <input
-                    type='text'
-                    id='imageURL'
-                    name='imageURL'
-                    value={formValues.imageURL}
-                    onChange={handleChanges}
-                />
-                <button>{editing === 'true' ? 'Update Post' : 'Add Post'}</button>
+                    required
+                    />
+                <br></br>
+                <TextField 
+                    className={classes.imgUrl} 
+                    id="standard-basic" 
+                    label="imageURL"
+                    required
+                    />
+                <br></br>
+                <Button className={classes.btn} variant="contained" color="primary">{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>
             </form>
         </>
     );
 };
 
 export default PostForm;
+
+
+// <label htmlFor='title'>Title</label>
+//                 <input
+//                     type='text'
+//                     name='title'
+//                     id='title'
+//                     value={formValues.title}
+//                     onChange={handleChanges}
+//                 />
+//                 <label htmlFor='body'>Body</label>
+//                 <textarea
+//                     name='body'
+//                     id='body'
+//                     value={formValues.body}
+//                     onChange={handleChanges}
+//                 />
+//                 <label htmlFor='imageUrl'>Image</label>
+//                 <input
+//                     type='text'
+//                     id='imageUrl'
+//                     value={formValues.imageUrl}
+//                     onChange={handleChanges}
+//                 />
+//                 <button>Add Post</button>

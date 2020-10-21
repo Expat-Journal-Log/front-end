@@ -14,8 +14,8 @@ import { ContextObject } from './context/context';
 import axiosWithAuth from './utils/axiosWithAuth';
 
 const initialState = {
-  posts: [],
-  error: ''
+	posts: [],
+	error: '',
 };
 
 function App() {
@@ -66,7 +66,6 @@ function App() {
             <Route exact path='/'>
             <Login /> 
             </Route>
-
             <Route exact path='/register'>
             <Register /> 
             </Route>
