@@ -28,7 +28,6 @@ const initialDisabled = true;
 
 function Login() {
 	const classes = useStyles();
-	const { push } = useHistory();
 
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -42,7 +41,8 @@ function Login() {
 				console.log('login successful!');
 
 				localStorage.setItem('token', res.data.token);
-				push('/posts');
+
+				window.location = '/posts';
 			})
 			.catch((err) => {
 				console.log(err);

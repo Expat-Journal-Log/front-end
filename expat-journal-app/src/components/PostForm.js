@@ -1,9 +1,10 @@
 import {TextField, makeStyles, Typography, Button} from '@material-ui/core';
-import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import { ContextObject } from '../context/context';
+import PostPage from './PostPage';
 
 const initialValues = {
     title: '',
@@ -33,11 +34,22 @@ const useStyles = makeStyles({
 const PostForm = (props) => {
     const { editing } = props;
     const classes = useStyles()
-
+    const { id } = useParams();
     const { postState, setPostState } = useContext(ContextObject);
     
     const [formValues, setFormValues] = useState(initialValues);
     const { push } = useHistory();
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get(`/api/posts/${id}`)
+            .then(res => {
+                console.log('PostForm: useEffect: DT: ', res);
+
+                setFormValues(res.data);
+            })
+            .catch(err => console.error('PostForm: useEffect: DT: Error: ', err));
+    }, []);
 
     const handleChanges = e => {
         setFormValues({
@@ -66,7 +78,7 @@ const PostForm = (props) => {
 
     return(
         <>
-            <Typography component='h3' variant='h4'>Create a New Post</Typography>
+            <Typography component='h3' variant='h4'>{editing ? 'Edit Post' : 'Create a New Post'}</Typography>
             <form className='form-container' noValidate autoComplete='off' onSubmit={handleSubmit}>
                 <TextField 
                     className={classes.title} 
@@ -83,8 +95,8 @@ const PostForm = (props) => {
                     id='outlined-basic' 
                     label="Body" 
                     multiline 
-                    name='body' 
-                    value={formValues.body} 
+                    name='description' 
+                    value={formValues.description} 
                     onChange={handleChanges}
                     required
                     />
@@ -92,7 +104,8 @@ const PostForm = (props) => {
                 <TextField 
                     className={classes.imgUrl} 
                     id="standard-basic" 
-                    label="imageURL"
+                    label="Image Link"
+                    name="imageURL"
                     required
                     />
                 <br></br>
