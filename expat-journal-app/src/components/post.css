@@ -4,21 +4,27 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .post-card a{
     text-decoration: none;
 }
 
-.post{
+div.post{
     margin: 20px;
     padding: 5px;
-    width: 300px;
+    width: 350px;
     height: 400px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(200,200,200);
+    background-color: rgb(235, 235, 235);
+    transition: all .2s linear;
+}
+
+.post:hover{
+    border: 1px solid rgb(16, 113, 138);
 }
 
 .post h2{
