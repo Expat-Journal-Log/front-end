@@ -12,19 +12,6 @@ html {
 	height: 100%;
 }
 
-/* LOGIN PAGE STYLING  */
-
-.page {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: center;
-	background-image: url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80');
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
 div.container {
 	opacity: 90%;
 	padding: 15%;
@@ -90,15 +77,14 @@ button.createPostButton {
 */
 
 .createPostText {
-  margin-right: 1%;
+	margin-right: 1%;
 }
-
 
 /* create-post styling */
 
 .form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
 }
