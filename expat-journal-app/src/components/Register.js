@@ -165,6 +165,7 @@ export default function Register() {
 								disabled={disabledSubmitButton}
 								variant='contained'
 								className={`${classes.formSection} ${classes.submitBtn}`}
+								type='submit'
 							>
 								Register
 							</Button>
