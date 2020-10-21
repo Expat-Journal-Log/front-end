@@ -53,6 +53,7 @@ function App() {
             <Route exact path='/'>
             <Login /> 
             </Route>
+            
             <Route exact path='/register'>
             <Register /> 
             </Route>

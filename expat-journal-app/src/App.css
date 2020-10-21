@@ -66,11 +66,9 @@ div.container {
 
 .errors {
   color: red;
+  margin: 5% 0;
 }
 
-.input {
-  margin: 2% 0 2% 10%;
-}
 
 /*  HEADER STYLES */
 
@@ -132,4 +130,14 @@ div.container {
 
 .createPostText {
   margin-right: 1%;
+}
+
+
+/* create-post styling */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }

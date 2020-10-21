@@ -4,22 +4,28 @@ import * as yup from 'yup'
 import schema from '../validation/login_schema'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import { Card, CardContent, Typography, Button, CardActions} from '@material-ui/core';
+import { Card, CardContent, Typography, Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Material UI Styling
 
 const useStyles = makeStyles({
+    input: {
+        margin: '10px 0'
+    },
     loginBtn: {
         background: '#12c9c9',
         border: 0,
         borderRadius: 3,
         height: 35,
         padding: '0 10px',
-        margin: '5%',
     },
     title: {
-        padding: '30px'
+        padding: '30px 30px 0px 30px'
+    },
+    subTitle: {
+        paddingBottom: '30px',
+        fontStyle: 'italic'
     }
 })
 
@@ -102,22 +108,36 @@ function Login() {
                 <Card>
                     <CardContent>
                         <Typography className={classes.title} variant='h3' component='h3'>Expat Journal</Typography>
+                        <Typography variant='subtitle1' className={classes.subTitle}>Share your Adventures.<br></br> Tell your Story.</Typography>
                 <form className='form-container' onSubmit={onSubmit}>
                 <div>
-                    <label>Username: 
-                        <input className='input' type='username' name='username' onChange={onChange} value={formValues.username} placeholder='enter username here' />
-                    </label>
+                <TextField 
+                    className={classes.input} 
+                    id="standard-basic"
+                    type='password' 
+                    label="Username" 
+                    name='username' 
+                    value={formValues.username} 
+                    onChange={onChange} 
+                    required
+                />
                     <br></br>
-                    <label>Password:   
-                        <input className='input' type='password' name='password' onChange={onChange} value={formValues.password} placeholder='enter password here'/>
-                    </label>
+                    <TextField 
+                    className={classes.input} 
+                    id="standard-basic" 
+                    label="Password" 
+                    name='password' 
+                    value={formValues.password} 
+                    onChange={onChange} 
+                    required
+                />
                 </div>
                 <div className='errors'>
                     <div>{formErrors.username}</div>
                     <div>{formErrors.password}</div>
                 </div>
                 <div>
-                    <Button className={classes.loginBtn} disabled={disabled}>Login</Button>
+                    <Button className={classes.loginBtn} variant="contained" disabled={disabled} color="primary">Login</Button>
                     <p>OR</p>
                     <Link to='/register'>Register</Link>
                 </div>                
