@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'; 
+import { Link } from 'react-router-dom';
 import { ContextObject } from '../context/context';
 import HeaderPostButton from './HeaderPostButton';
 import Post from './Post';
@@ -10,7 +11,9 @@ const Posts = () => {
         <div>
             <HeaderPostButton editing='false' />
             {data.postState.posts.map(post => (
-                <Post key={post.id} post={post} />
+                <Link to={`/post/${post.postId}`}>
+                    <Post key={post.postId} post={post} />
+                </Link>
             ))}
         </div>
     );

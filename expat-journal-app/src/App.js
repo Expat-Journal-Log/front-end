@@ -3,6 +3,7 @@ import './App.css';
 import Login from './components/Login';
 import Posts from './components/Posts';
 import Post from './components/Post';
+import PostPage from './components/PostPage';
 import Header from './components/Header';
 import PostForm from './components/PostForm';
 import Register from './components/Register';
@@ -50,17 +51,22 @@ function App() {
               <Posts />
             </PrivateRoute>
 
-            {/* <Route exact path='/post'>
-              <Post />
-            </Route> */}
+            <Route exact path='/post/:id'>
+              <PostPage />
+            </Route>
 
             <Route exact path='/create-post'>
-            <PostForm /> 
+              <PostForm editing='false' /> 
+            </Route>
+
+            <Route exact path='/edit-post/:id'>
+              <PostForm editing='true' /> 
             </Route>
 
             <Route exact path='/'>
             <Login /> 
             </Route>
+
             <Route exact path='/register'>
             <Register /> 
             </Route>

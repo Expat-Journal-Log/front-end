@@ -11,8 +11,10 @@ const initialValues = {
 };
 
 const PostForm = (props) => {
-    const { postState, setPostState } = useContext(ContextObject);
+    const { editing } = props;
 
+    const { postState, setPostState } = useContext(ContextObject);
+    
     const [formValues, setFormValues] = useState(initialValues);
     const { push } = useHistory();
 
@@ -67,7 +69,7 @@ const PostForm = (props) => {
                     value={formValues.imageURL}
                     onChange={handleChanges}
                 />
-                <button>Add Post</button>
+                <button>{editing === 'true' ? 'Update Post' : 'Add Post'}</button>
             </form>
         </>
     );
