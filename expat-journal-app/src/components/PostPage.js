@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
+import HeaderPostButton from './HeaderPostButton';
+
 const PostPage = (props) => {
     const [post, setPost] = useState({});
     const { id } = useParams();
@@ -24,6 +26,7 @@ const PostPage = (props) => {
                 <img src={`${post.imageURL}`} className={`${post.imageURL ? '':'hide'}`}/>
                 <p>{post.description}</p>
             </div>
+            <HeaderPostButton editing='true' />
         </>
     );
 };

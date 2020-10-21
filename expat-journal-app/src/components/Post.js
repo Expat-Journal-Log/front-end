@@ -6,7 +6,6 @@ const Post = (props) => {
 
     return(
         <>
-            <HeaderPostButton editing='true' />
             <div>
                 <h2>{post.title}</h2>
                 <img src={`${post.imageURL}`} className={`${post.imageURL ? '':'hide'}`}/>
