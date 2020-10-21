@@ -41,14 +41,16 @@ const PostForm = (props) => {
     const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth()
-            .get(`/api/posts/${id}`)
-            .then(res => {
-                console.log('PostForm: useEffect: DT: ', res);
+        if(editing === 'true'){
+            axiosWithAuth()
+                .get(`/api/posts/${id}`)
+                .then(res => {
+                    console.log('PostForm: useEffect: DT: ', res);
 
-                setFormValues(res.data);
-            })
-            .catch(err => console.error('PostForm: useEffect: DT: Error: ', err));
+                    setFormValues(res.data);
+                })
+                .catch(err => console.error('PostForm: useEffect: DT: Error: ', err));
+        }
     }, []);
 
     const handleChanges = e => {
@@ -61,7 +63,7 @@ const PostForm = (props) => {
      const handleSubmit = e => {
         e.preventDefault();
 
-        if(editing){
+        if(editing === 'true'){
             axiosWithAuth()
                 .put(`/api/posts/${id}`, formValues)
                 .then(res => {
@@ -90,7 +92,7 @@ const PostForm = (props) => {
 
     return(
         <>
-            <Typography component='h3' variant='h4'>{editing ? 'Edit Post' : 'Create a New Post'}</Typography>
+            <Typography component='h3' variant='h4'>{editing === 'true' ? 'Edit Post' : 'Create a New Post'}</Typography>
             <form className='form-container' noValidate autoComplete='off' onSubmit={handleSubmit}>
                 <TextField 
                     className={classes.title} 
