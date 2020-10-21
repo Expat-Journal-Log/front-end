@@ -81,7 +81,6 @@ export default function Register() {
 	const submitRegisterForm = (evt) => {
 		evt.preventDefault();
 		const newUser = {
-            
 			username: registerFormValues.username,
 			password: registerFormValues.password,
 			email: registerFormValues.email,
@@ -112,7 +111,6 @@ export default function Register() {
 						src={logo}
 						component='img'
 						className={classes.logo}
-						// image={require('../assets/expatLogoCircle.png')}
 						title='The Expat Log'
 					/>
 					<CardContent className={classes.cardContent}>
@@ -166,6 +164,7 @@ export default function Register() {
 								disabled={disabledSubmitButton}
 								variant='contained'
 								className={`${classes.formSection} ${classes.submitBtn}`}
+								type='submit'
 							>
 								Register
 							</Button>

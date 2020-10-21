@@ -15,7 +15,6 @@ import schema from '../validation/login_schema';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import logo from '../assets/expatLogLogo.svg';
 
-
 const initialFormValues = {
 	username: '',
 	password: '',
@@ -28,29 +27,28 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 function Login() {
+	const classes = useStyles();
+	const { push } = useHistory();
 
-    const classes = useStyles()
-    const { push } = useHistory();
+	const [formValues, setFormValues] = useState(initialFormValues);
+	const [formErrors, setFormErrors] = useState(initialFormErrors);
+	const [disabled, setDisabled] = useState(initialDisabled);
 
-    const [formValues, setFormValues] = useState(initialFormValues)
-    const [formErrors, setFormErrors] = useState(initialFormErrors)
-    const [disabled, setDisabled] = useState(initialDisabled)
+	const formSubmit = () => {
+		axiosWithAuth()
+			.post('/login', formValues)
+			.then((res) => {
+				console.log(res);
+				console.log('login successful!');
 
-    const formSubmit = () => {
-        axiosWithAuth()
-            .post('/login', formValues)
-            .then(res => {
-                console.log(res);
-                console.log('login successful!');
-
-                localStorage.setItem('token', res.data.token);
-                push('/posts');
-            })
-            .catch(err => {
-                console.log(err)
-                console.log('login failed')
-            })
-    }
+				localStorage.setItem('token', res.data.token);
+				push('/posts');
+			})
+			.catch((err) => {
+				console.log(err);
+				console.log('login failed');
+			});
+	};
 
 	const onSubmit = (evt) => {
 		evt.preventDefault();
@@ -135,6 +133,7 @@ function Login() {
 							className={`${classes.formSection} ${classes.submitBtn}`}
 							disabled={disabled}
 							variant='contained'
+							type='submit'
 						>
 							Login
 						</Button>
