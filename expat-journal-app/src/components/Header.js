@@ -1,6 +1,7 @@
 import React from 'react'
-import logo from '../assets/expatLogo.png'
-
+import logo from '../assets/expatLogLogo.svg';
+import HeaderPostButton from '../components/HeaderPostButton';
+import '../App';
 
 function Header() {
     return (
@@ -8,6 +9,7 @@ function Header() {
             <header className='header'>
                 <img src={logo} />
                 <h2>Expat Journal</h2>
+                <HeaderPostButton editing='false' />
             </header>
         </div>
     )

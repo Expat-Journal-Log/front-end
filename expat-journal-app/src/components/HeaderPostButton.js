@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import PostAddIcon from '@material-ui/icons/PostAdd';
+
 
 function HeaderPostButton(props) {
     // const classes = useStyles()
@@ -17,8 +19,11 @@ function HeaderPostButton(props) {
                     </Link>
                 </>
             ) : (
-                <Link to='/create-post'>
-                    <button className='createPostButton'>create a post</button>
+                <Link to='/create-post' className='link'>
+                    <div className='buttonText'>
+                    <PostAddIcon fontSize='large' className='createPostButton'>create a post</PostAddIcon>
+                    <p>Create <br></br>Post</p>
+                    </div>
                 </Link>
             )}
         </div>

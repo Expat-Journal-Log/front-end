@@ -11,7 +11,7 @@ const Posts = () => {
 
 	return (
 		<div className='post-card'>
-			<HeaderPostButton editing='false' />
+			
 			{data.postState.posts.map((post) => (
 				<Link to={`/post/${post.postId}`}>
 					<Post key={post.postId} post={post} />
