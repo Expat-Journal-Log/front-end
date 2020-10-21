@@ -7,6 +7,8 @@
     margin-top: 50px;
 }
 
+
+
 .post-card a{
     text-decoration: none;
 }
@@ -23,10 +25,57 @@ div.post{
     transition: all .2s linear;
 }
 
+div.post h2 {
+    color: black;
+    padding-bottom: 10px;
+}
+
+div.post p {
+    padding-top: 10px;
+}
+
 .post:hover{
     border: 1px solid rgb(16, 113, 138);
 }
 
 .post h2{
     font-weight: bold;
+}
+
+/* Individual Post Styles */
+
+.singlePost {
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+.singlePost h2 {
+    font-size: 3rem;
+    padding-bottom: 30px;
+}
+
+.singlePost p {
+    font-size: 2.5rem;
+    padding-top: 20px;
+    
+}
+
+/* Edit Post Button */
+
+svg.editPostButton {
+    color: black;
+    font-size: 5rem;
+}
+
+.editPostButton p {
+    color: black;
+}
+
+.editLink {
+    text-decoration: none;
+}
+
+.editButtonText {
+    color: black;
+    font-size: 2rem;
+    
 }
