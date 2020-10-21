@@ -66,6 +66,8 @@ const PostForm = (props) => {
                 .put(`/api/posts/${id}`, formValues)
                 .then(res => {
                     console.log('PostForm: handleSubmit: DT: ', res);
+
+                    push(`/post/${id}`);
                 })
                 .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
         }
@@ -119,7 +121,7 @@ const PostForm = (props) => {
                     required
                     />
                 <br></br>
-                <Button className={classes.btn} variant="contained" color="primary">{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>
+                <Button className={classes.btn} variant="contained" color="primary" type='submit'>{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>
             </form>
         </>
     );
