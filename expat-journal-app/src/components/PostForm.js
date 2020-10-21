@@ -61,19 +61,31 @@ const PostForm = (props) => {
      const handleSubmit = e => {
         e.preventDefault();
 
-        axiosWithAuth()
-            .post('/api/posts', formValues)
-            .then(res => {
-                console.log('PostForm: handleSubmit: DT: ', res);
-                
-                setPostState({
-                    ...postState,
-                    posts: [...postState.posts, res.data]
-                });
+        if(editing){
+            axiosWithAuth()
+                .put(`/api/posts/${id}`, formValues)
+                .then(res => {
+                    console.log('PostForm: handleSubmit: DT: ', res);
 
-                push('/posts');
-            })
-            .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
+                    push(`/post/${id}`);
+                })
+                .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
+        }
+        else{
+            axiosWithAuth()
+                .post('/api/posts', formValues)
+                .then(res => {
+                    console.log('PostForm: handleSubmit: DT: ', res);
+                    
+                    setPostState({
+                        ...postState,
+                        posts: [...postState.posts, res.data]
+                    });
+
+                    push('/posts');
+                })
+                .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
+        }
     };
 
     return(
@@ -107,7 +119,7 @@ const PostForm = (props) => {
                     
                     />
                 <br></br>
-                <Button className={classes.btn} variant="contained" color="primary">{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>
+                <Button className={classes.btn} variant="contained" color="primary" type='submit'>{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>
             </form>
         </>
     );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
 	Container,
 	Card,
@@ -28,9 +28,7 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 function Login() {
-
     const classes = useStyles()
-    const { push } = useHistory();
 
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
@@ -46,7 +44,8 @@ function Login() {
                 console.log('login successful!');
 
                 localStorage.setItem('token', res.data.token);
-                push('/posts');
+
+                window.location = '/posts';
             })
             .catch(err => {
                 console.log(err)
@@ -55,7 +54,7 @@ function Login() {
     }
 
 	const onSubmit = (evt) => {
-		evt.preventDefault();
+        evt.preventDefault();
 		formSubmit();
 	};
 
@@ -136,8 +135,13 @@ function Login() {
 						<Button
 							className={`${classes.formSection} ${classes.submitBtn}`}
 							disabled={disabled}
+<<<<<<< HEAD
 							variant='contained'
 							type='submit'
+=======
+                            variant='contained'
+                            type='submit'
+>>>>>>> b10fb10655104837700aafa8099ddd1a45be3b08
 						>
 							Login
 						</Button>

@@ -17,7 +17,7 @@ const PostPage = (props) => {
                 setPost(res.data);
             })
             .catch(err => console.error('Post: useEffect: DT: Error: ', err));
-    }, []);
+    }, [id]);
 
     return(
         <>
