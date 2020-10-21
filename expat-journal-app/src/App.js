@@ -33,7 +33,7 @@ function App() {
         });
       })
       .catch(err => console.error('App: useEffect: DT: Error: ', err));
-  }, []);
+  }, [postState]);
 
   return (
     <Router>

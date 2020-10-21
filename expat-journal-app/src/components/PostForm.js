@@ -87,7 +87,6 @@ const PostForm = (props) => {
                     name='title' 
                     value={formValues.title} 
                     onChange={handleChanges} 
-                    required
                 />
                 <br></br>
                 <TextField 
@@ -98,7 +97,6 @@ const PostForm = (props) => {
                     name='description' 
                     value={formValues.description} 
                     onChange={handleChanges}
-                    required
                     />
                 <br></br>
                 <TextField 
@@ -106,7 +104,7 @@ const PostForm = (props) => {
                     id="standard-basic" 
                     label="Image Link"
                     name="imageURL"
-                    required
+                    
                     />
                 <br></br>
                 <Button className={classes.btn} variant="contained" color="primary">{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>

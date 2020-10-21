@@ -34,7 +34,9 @@ function Login() {
 
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
-    const [disabled, setDisabled] = useState(initialDisabled)
+	const [disabled, setDisabled] = useState(initialDisabled)
+	
+
 
     const formSubmit = () => {
         axiosWithAuth()
@@ -135,6 +137,7 @@ function Login() {
 							className={`${classes.formSection} ${classes.submitBtn}`}
 							disabled={disabled}
 							variant='contained'
+							type='submit'
 						>
 							Login
 						</Button>
