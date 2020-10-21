@@ -1,0 +1,11 @@
+.post-card{
+    font-size: 1.8rem;
+}
+
+.post{
+    margin: 20px;
+}
+
+.post h2{
+    font-weight: bold;
+}

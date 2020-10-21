@@ -1,17 +1,15 @@
 import React from 'react';
-
+import HeaderPostButton from './HeaderPostButton';
 
 const Post = (props) => {
     const { post } = props;
-    
+
     return(
         <>
-        
-            <h1>Post here...</h1>
-            <div>
+            <div className='post'>
                 <h2>{post.title}</h2>
-                <img href={post.img_url} />
-                <p>{post.body}</p>
+                <img src={`${post.imageURL}`} className={`${post.imageURL ? '':'hide'}`}/>
+                <p>{post.description}</p>
             </div>
         </>
     );

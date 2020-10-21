@@ -2,47 +2,65 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Login from './components/Login';
 import Posts from './components/Posts';
+import Post from './components/Post';
+import PostPage from './components/PostPage';
 import Header from './components/Header';
 import PostForm from './components/PostForm';
 import Register from './components/Register';
+import PrivateRoute from './utils/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ContextObject } from './context/context';
 
-// import axiosWithAuth from './utils/axiosWithAuth';
+import axiosWithAuth from './utils/axiosWithAuth';
 
 const initialState = {
-  posts: [],
-  error: ''
+	posts: [],
+	error: '',
 };
 
 function App() {
-  const [posts, setPosts] = useState(initialState.posts);
+  const [postState, setPostState] = useState(initialState);
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get(`/posts`)
-  //     .then(res => {
-  //       console.log('App: useEffect: DT: ', res);
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/posts`)
+      .then(res => {
+        console.log('App: useEffect: DT: ', res.data);
 
-  //       setPosts(res.data);
-  //     })
-  //     .catch(err => console.error('App: useEffect: DT: Error: ', err));
-  // }, []);
+        setPostState({
+          ...postState,
+          posts: res.data
+        });
+      })
+      .catch(err => console.error('App: useEffect: DT: Error: ', err));
+  }, [postState]);
 
   return (
     <Router>
-      <ContextObject.Provider>
+      <ContextObject.Provider value={{postState, setPostState}}>
         <div className="App">
+          
           {/* <h1>Expat Journal</h1>
           <h2>Login</h2> */}
             <Header />
 
-            <Route exact path='/posts'>
-            <Posts /> 
+            <PrivateRoute
+              exact 
+              path='/posts'
+            > 
+              <Posts />
+            </PrivateRoute>
+
+            <Route exact path='/post/:id'>
+              <PostPage />
             </Route>
 
             <Route exact path='/create-post'>
-            <PostForm /> 
+              <PostForm editing='false' /> 
+            </Route>
+
+            <Route exact path='/edit-post/:id'>
+              <PostForm editing='true' /> 
             </Route>
 
             <Route exact path='/'>
