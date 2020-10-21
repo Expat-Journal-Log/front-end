@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
 	Container,
 	Card,
 	CardContent,
 	CardMedia,
-	Typography,
+	TextField,
+	Button,
 } from '@material-ui/core';
+import useStyles from '../formStyle';
+
 import * as yup from 'yup';
-import axios from 'axios';
+import logo from '../assets/expatLogLogo.svg';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const registerSchema = yup.object().shape({
+	// need to validate that username hasn't been used before
 	username: yup.string().required('Username is required'),
 	password: yup.string().required('Password is required'),
-	first_name: yup.string().required('First name is required'),
-	last_name: yup.string().required('Last name is required'),
 	email: yup
 		.string()
 		.email('Email must be formatted correctly')
@@ -24,21 +28,17 @@ const registerSchema = yup.object().shape({
 const initRegisterFormValues = {
 	username: '',
 	password: '',
-	first_name: '',
-	last_name: '',
 	email: '',
 };
 const initRegisterFormErrors = {
 	username: '',
 	password: '',
-	first_name: '',
-	last_name: '',
 	email: '',
 };
 const initDisabledSubmitButton = true;
 
-// 🎒
 export default function Register() {
+	const classes = useStyles();
 	// 🎒 State
 	const [registerFormValues, setRegisterFormValues] = useState(
 		initRegisterFormValues
@@ -46,7 +46,6 @@ export default function Register() {
 	const [registerFormErrors, setRegisterFormErrors] = useState(
 		initRegisterFormErrors
 	);
-	// const [users, setUsers] = useState({ setRegisterFormValues });
 	const [disabledSubmitButton, setDisabledSubmitButton] = useState(
 		initDisabledSubmitButton
 	);
@@ -82,16 +81,15 @@ export default function Register() {
 	const submitRegisterForm = (evt) => {
 		evt.preventDefault();
 		const newUser = {
+            
 			username: registerFormValues.username,
 			password: registerFormValues.password,
-			first_name: registerFormValues.first_name,
-			last_name: registerFormValues.last_name,
 			email: registerFormValues.email,
 		};
 		console.log('New User', newUser);
 
-		axios
-			.post('', newUser)
+		axiosWithAuth()
+			.post('/signup', newUser)
 			.then((res) => {
 				setRegisterFormValues(initRegisterFormValues);
 			})
@@ -100,21 +98,6 @@ export default function Register() {
 			});
 	};
 
-	// 🎒 I BELIEVE THIS IS UNECCEASSRY BUT LEFT IT FOR NOW IN CASE I'M WRONG
-	// 🎒 use setErrors to set RegisterFormErrors
-	// const setErrors = (name, value) => {
-	// 	yup
-	// 		.reach(registerSchema, name)
-	// 		.validate(value)
-	// 		.then(() => setRegisterFormErrors({ ...registerFormErrors, [name]: ' ' }))
-	// 		.catch((err) =>
-	// 			setRegisterFormErrors({
-	// 				...registerFormErrors,
-	// 				[name]: err.registerFormErrors[0],
-	// 			})
-	// 		);
-	// };
-
 	useEffect(() => {
 		registerSchema.isValid(registerFormValues).then((valid) => {
 			setDisabledSubmitButton(!valid);
@@ -122,77 +105,86 @@ export default function Register() {
 	}, [registerFormValues]);
 
 	return (
-		<Container>
-			<Card>
-				<CardContent>
-					<Typography variant='h1' component='h1'>
-						Expat Journal
-					</Typography>
-					<form onSubmit={submitRegisterForm}>
-						{/* 🎒 USERNAME */}
-						<label>
-							Username:
-							<input
+		<>
+			<Container className={classes.container}>
+				<Card className={classes.card}>
+					<CardMedia
+						src={logo}
+						component='img'
+						className={classes.logo}
+						// image={require('../assets/expatLogoCircle.png')}
+						title='The Expat Log'
+					/>
+					<CardContent className={classes.cardContent}>
+						<h2>Sign up to see posts from your friends.</h2>
+						<form className={classes.form} onSubmit={submitRegisterForm}>
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='username'
+								label='Username'
+								name='username'
+								type='text'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.username}
-								type='text'
-								name='username'
 							/>
-						</label>
-						{/* 🎒 PASSWORD */}
-						{/* test */}
-						<label>
-							Password:
-							<input
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='password'
+								label='Password'
+								name='password'
+								type='password'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.password}
-								type='password'
-								name='password'
 							/>
-						</label>
-						{/* 🎒 FIRST NAME */}
-						<label>
-							First Name:
-							<input
-								onChange={onChange}
-								value={registerFormValues.first_name}
-								type='text'
-								name='first_name'
-							/>
-						</label>
-						{/* 🎒 LAST NAME */}
-						<label>
-							Last Name:
-							<input
-								onChange={onChange}
-								value={registerFormValues.last_name}
-								type='text'
-								name='last_name'
-							/>
-						</label>
-						{/* 🎒 EMAIL */}
-						<label>
-							Email:
-							<input
+							<TextField
+								className={classes.formSection}
+								InputProps={{ className: classes.input }}
+								InputLabelProps={{ className: classes.inputLabel }}
+								id='email'
+								label='Email'
+								name='email'
+								type='email'
+								variant='outlined'
 								onChange={onChange}
 								value={registerFormValues.email}
-								type='email'
-								name='email'
 							/>
-						</label>
-						{/* 🎒 VALIDATION ERRORS */}
-						<div className='errors'>
-							<div>{registerFormErrors.username}</div>
-							<div>{registerFormErrors.password}</div>
-							<div>{registerFormErrors.first_name}</div>
-							<div>{registerFormErrors.last_name}</div>
-							<div>{registerFormErrors.email}</div>
-						</div>
-						{/* 🎒 SUBMIT */}
-						<button disabled={disabledSubmitButton}>Register</button>
-					</form>
-				</CardContent>
-			</Card>
-		</Container>
+
+							{/* 🎒 VALIDATION ERRORS */}
+							<div className={classes.errors}>
+								<div>{registerFormErrors.username}</div>
+								<div>{registerFormErrors.password}</div>
+								<div>{registerFormErrors.email}</div>
+							</div>
+
+							<Button
+								disabled={disabledSubmitButton}
+								variant='contained'
+								className={`${classes.formSection} ${classes.submitBtn}`}
+							>
+								Register
+							</Button>
+						</form>
+						<p className={classes.disclaimer}>
+							By signing up, you agree to our Terms, which we have not created
+							yet.
+						</p>
+					</CardContent>
+				</Card>
+				<Card className={classes.card}>
+					<p>
+						Have an account?{' '}
+						<Link to='/' className={classes.loginLink}>
+							Log In
+						</Link>
+					</p>
+				</Card>
+			</Container>
+		</>
 	);
 }

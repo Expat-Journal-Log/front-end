@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
 import {TextField, makeStyles, Typography, Button} from '@material-ui/core';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
+
+import { ContextObject } from '../context/context';
 
 const initialValues = {
     title: '',
-    body:  '',
-    imageUrl: ''
+    description:  '',
+    imageURL: ''
 };
 
 const useStyles = makeStyles({
@@ -25,9 +29,15 @@ const useStyles = makeStyles({
     }
 })
 
-const PostForm = () => {
-    const [formValues, setFormValues] = useState(initialValues);
+
+const PostForm = (props) => {
+    const { editing } = props;
     const classes = useStyles()
+
+    const { postState, setPostState } = useContext(ContextObject);
+    
+    const [formValues, setFormValues] = useState(initialValues);
+    const { push } = useHistory();
 
     const handleChanges = e => {
         setFormValues({
@@ -38,6 +48,20 @@ const PostForm = () => {
 
      const handleSubmit = e => {
         e.preventDefault();
+
+        axiosWithAuth()
+            .post('/api/posts', formValues)
+            .then(res => {
+                console.log('PostForm: handleSubmit: DT: ', res);
+                
+                setPostState({
+                    ...postState,
+                    posts: [...postState.posts, res.data]
+                });
+
+                push('/posts');
+            })
+            .catch(err => console.error('PostForm: handleSubmit: DT: Error: ', err));
     };
 
     return(
@@ -72,7 +96,7 @@ const PostForm = () => {
                     required
                     />
                 <br></br>
-                <Button className={classes.btn} variant="contained" color="primary">Create Post</Button>
+                <Button className={classes.btn} variant="contained" color="primary">{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>
             </form>
         </>
     );

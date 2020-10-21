@@ -1,124 +1,84 @@
 .App {
-  text-align: center;
-  height: 100%;
+	text-align: center;
+	height: 100%;
 }
 
-body, html {
-height: 100%;
+body,
+html {
+	height: 100%;
 }
 
 #root {
- height: 100%; 
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	height: 100%;
 }
 
 /* LOGIN PAGE STYLING  */
 
 .page {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background-image: url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80');
-  background-repeat: no-repeat;
-  background-size: cover;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-image: url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 div.container {
-  opacity: 90%;
-  padding: 15%;
+	opacity: 90%;
+	padding: 15%;
 }
 
-.errors {
-  color: red;
-  margin: 5% 0;
+/* .errors {
+	color: red;
 }
 
+.input {
+	margin: 2% 0 2% 10%;
+} */
 
 /*  HEADER STYLES */
 
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 50px;
-  padding-top: 30px;
-  width: 100%;
-  padding-right: 80px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-left: 50px;
+	padding-top: 30px;
+	width: 100%;
+	padding-right: 80px;
 }
 
-
-
-
-
 /*  HEADER STYLES */
-
 
 /*  POSTS STYLES */
 
 .image-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  margin: 0 auto;
-  height: 80%;
-  justify-content: space-around;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 0 auto;
+	height: 80%;
+	justify-content: space-around;
 }
 
 .image-container img {
-  height: 300px;
-  width: 400px;
+	height: 300px;
+	width: 400px;
 }
 
 /*  POSTS STYLES */
 
-
 /* Create a Post Button STYLES */
- /* createPostButton {
-  position: absolute;
-  top: 55px;
-  right: 50px;
-  
-} */
+button.createPostButton {
+	position: absolute;
+	top: 55px;
+	right: 50px;
+}
 
-/* Create a Post Button STYLES */
-
+/* MIGHT BE DUPLICATE 
 .createPostButton {
   display: flex;
   flex-direction: row;
@@ -127,6 +87,7 @@ div.container {
   margin-bottom: 1%;
   margin-right: 2.5%;
 }
+*/
 
 .createPostText {
   margin-right: 1%;

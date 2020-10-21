@@ -1,25 +1,23 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {makeStyles, Tooltip, Fab} from '@material-ui/core'
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-
-const useStyles = makeStyles({
-    postBtn: {
-    }
-    })
+import { Link } from 'react-router-dom'
 
 function HeaderPostButton(props) {
-    const classes = useStyles()
+    // const classes = useStyles()
 
     const { editing } = props;
-    console.log(editing);
+
     return (
         <div>
-            <Tooltip  title="Add" aria-label="add" placement="right">
-                <Fab color="primary" className={classes.fab}>
-                <AddCircleIcon placement='right' />
-                </Fab>
-            </Tooltip>
+            {editing === 'true' ? (
+                <>
+                    <button>Update Post</button>
+                    <button>Delete Post</button>
+                </>
+            ) : (
+                <Link to='/create-post'>
+                    <button className='createPostButton'>create a post</button>
+                </Link>
+            )}
         </div>
     )
 }
