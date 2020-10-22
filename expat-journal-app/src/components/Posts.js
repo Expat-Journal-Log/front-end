@@ -13,7 +13,7 @@ const Posts = () => {
     const logout = () => {
         localStorage.removeItem('token');
 
-        push('/');
+        window.location.pathname = '/';
     };
 
 	return (
