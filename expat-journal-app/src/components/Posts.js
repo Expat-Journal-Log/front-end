@@ -12,11 +12,8 @@ const Posts = () => {
     const { push } = useHistory();
 
 
-
 	return (
         <>
-            
-           
             <div className='post-card'>
                 {data.postState.posts.map((post) => (
                     <Link to={`/post/${post.postId}`}>

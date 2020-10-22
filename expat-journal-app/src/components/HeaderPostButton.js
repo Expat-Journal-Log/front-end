@@ -24,7 +24,7 @@ function HeaderPostButton(props) {
         <div className='flex-container1'>
            
 
-            {editing === 'true' ? (
+            {(editing === 'true' && localStorage.getItem('token')) ? (
                 <>
                     <Link to={`/edit-post/${id}`} className='editLink'>
                         <div className='editButtonText'>
@@ -34,26 +34,24 @@ function HeaderPostButton(props) {
                     </Link>
                 </>
             ) : (
-                <Link to='/create-post' className='link'>
-                    <div className='buttonStyle' >
-                        
-                   <PostAddIcon fontSize='large' className='createPostButton buttonStyle '>create a post</PostAddIcon>
-                    <p className='createPostText'>Create <br></br>Post</p>
+                <>
+                    <Link to='/create-post' className='link'>
+                        <div className='buttonStyle' >
+                            
+                    <PostAddIcon fontSize='large' className='createPostButton buttonStyle '>create a post</PostAddIcon>
+                        <p className='createPostText'>Create <br></br>Post</p>
+                        </div>
+                    </Link>
+                    <div>
+                        <ExitToAppIcon
+                        className='logout buttonStyle'
+                        onClick={logout}
+                        >
+                            Logout
+                        </ExitToAppIcon>
+                        <p className='createPostText'>Log <br></br>out</p>
                     </div>
-                </Link>
-            )}
-             {localStorage.getItem('token') ? (
-                <div>
-                <ExitToAppIcon
-                className='logout buttonStyle'
-                onClick={logout}
-                >
-                    Logout
-                </ExitToAppIcon>
-                <p className='createPostText'>Log <br></br>out</p>
-                </div>
-            ) : (
-                <></>
+                </>
             )}
         </div>
     )

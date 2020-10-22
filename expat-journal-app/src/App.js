@@ -30,7 +30,9 @@ function App() {
 				setPostState({
 					...postState,
 					posts: res.data,
-				});
+        });
+        
+
 			})
 			.catch((err) => console.error('App: useEffect: DT: Error: ', err));
 	}, []);
