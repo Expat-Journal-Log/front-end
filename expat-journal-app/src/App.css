@@ -34,7 +34,7 @@ div.container {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	padding-left: 50px;
+	padding-left: 10px;
 	padding-top: 30px;
 	width: 100%;
 	padding-right: 80px;
@@ -133,7 +133,10 @@ button.createPostButton {
 	position: absolute;
 	top: 55px;
 	right: 50px;
+	
 }
+
+
 
 /* MIGHT BE DUPLICATE 
 .createPostButton {
@@ -166,3 +169,7 @@ svg.createPostButton {
 	margin-top: 10px;
 }
 
+
+.dynamicButton {
+	padding-top: 10px;
+}

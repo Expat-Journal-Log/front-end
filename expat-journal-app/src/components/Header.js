@@ -9,7 +9,7 @@ function Header() {
             <header className='header'>
                 <img src={logo} />
                 <h2>Expat Journal</h2>
-                <HeaderPostButton editing='false' />
+                <HeaderPostButton  editing='false' />
             </header>
         </div>
     )

@@ -92,7 +92,7 @@ const PostForm = (props) => {
 
     return(
         <>
-            <Typography component='h3' variant='h4'>{editing === 'true' ? 'Edit Post' : 'Create a New Post'}</Typography>
+            <Typography className='dynamicButton' component='h3' variant='h4'>{editing === 'true' ? 'Edit Post' : 'Create a New Post'}</Typography>
             <form className='form-container' noValidate autoComplete='off' onSubmit={handleSubmit}>
                 <TextField 
                     className={classes.title} 

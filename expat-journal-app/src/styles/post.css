@@ -71,6 +71,10 @@ div.post:hover:after{
     
 }
 
+.singlePost img {
+    width: 60%;
+}
+
 /* Edit Post Button */
 
 svg.editPostButton {
@@ -104,4 +108,21 @@ svg.editPostButton {
     100%{
         background-position: 0% 50%;
     }
+}
+
+.logout { 
+    margin-top: 20px;
+    
+}
+
+.logout button {
+    font-size: 3rem;
+}
+
+svg.logout {
+    font-size: 3rem;
+}
+
+.logoutText {
+    font-size: 2rem;
 }
