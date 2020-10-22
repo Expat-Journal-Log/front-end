@@ -8,13 +8,12 @@ import {
 	TextField,
 	Button,
 } from '@material-ui/core';
-import useStyles from '../formStyle';
+import useStyles from '../styles/formStyle';
 
 import * as yup from 'yup';
 import schema from '../validation/login_schema';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import logo from '../assets/expatLogLogo.svg';
-
 
 const initialFormValues = {
 	username: '',
@@ -28,31 +27,31 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 function Login() {
-    const classes = useStyles()
+	const classes = useStyles();
 
-    const [formValues, setFormValues] = useState(initialFormValues)
-    const [formErrors, setFormErrors] = useState(initialFormErrors)
-    const [disabled, setDisabled] = useState(initialDisabled)
+	const [formValues, setFormValues] = useState(initialFormValues);
+	const [formErrors, setFormErrors] = useState(initialFormErrors);
+	const [disabled, setDisabled] = useState(initialDisabled);
 
-    const formSubmit = () => {
-        axiosWithAuth()
-            .post('/login', formValues)
-            .then(res => {
-                console.log(res);
-                console.log('login successful!');
+	const formSubmit = () => {
+		axiosWithAuth()
+			.post('/login', formValues)
+			.then((res) => {
+				console.log(res);
+				console.log('login successful!');
 
-                localStorage.setItem('token', res.data.token);
+				localStorage.setItem('token', res.data.token);
 
-                window.location = '/posts';
-            })
-            .catch(err => {
-                console.log(err)
-                console.log('login failed')
-            })
-    }
+				window.location = '/posts';
+			})
+			.catch((err) => {
+				console.log(err);
+				console.log('login failed');
+			});
+	};
 
 	const onSubmit = (evt) => {
-        evt.preventDefault();
+		evt.preventDefault();
 		formSubmit();
 	};
 
@@ -133,8 +132,8 @@ function Login() {
 						<Button
 							className={`${classes.formSection} ${classes.submitBtn}`}
 							disabled={disabled}
-                            variant='contained'
-                            type='submit'
+							variant='contained'
+							type='submit'
 						>
 							Login
 						</Button>

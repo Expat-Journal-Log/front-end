@@ -19,60 +19,56 @@ const initialState = {
 };
 
 function App() {
-  const [postState, setPostState] = useState(initialState);
+	const [postState, setPostState] = useState(initialState);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/posts`)
-      .then(res => {
-        console.log('App: useEffect: DT: ', res.data);
+	useEffect(() => {
+		axiosWithAuth()
+			.get(`/api/posts`)
+			.then((res) => {
+				console.log('App: useEffect: DT: ', res.data);
 
-        setPostState({
-          ...postState,
-          posts: res.data
-        });
-      })
-      .catch(err => console.error('App: useEffect: DT: Error: ', err));
-  }, []);
+				setPostState({
+					...postState,
+					posts: res.data,
+				});
+			})
+			.catch((err) => console.error('App: useEffect: DT: Error: ', err));
+	}, []);
 
-  return (
-    <Router>
-      <ContextObject.Provider value={{postState, setPostState}}>
-        <div className="App">
-          
-          {/* <h1>Expat Journal</h1>
+	return (
+		<Router>
+			<ContextObject.Provider value={{ postState, setPostState }}>
+				<div className='App'>
+					{/* <h1>Expat Journal</h1>
           <h2>Login</h2> */}
-            <Header />
+					<Header />
 
-            <PrivateRoute
-              exact 
-              path='/posts'
-            > 
-              <Posts />
-            </PrivateRoute>
+					<PrivateRoute exact path='/posts'>
+						<Posts />
+					</PrivateRoute>
 
-            <Route exact path='/post/:id'>
-              <PostPage />
-            </Route>
+					<Route exact path='/post/:id'>
+						<PostPage />
+					</Route>
 
-            <Route exact path='/create-post'>
-              <PostForm editing='false' /> 
-            </Route>
+					<Route exact path='/create-post'>
+						<PostForm editing='false' />
+					</Route>
 
-            <Route exact path='/edit-post/:id'>
-              <PostForm editing='true' /> 
-            </Route>
+					<Route exact path='/edit-post/:id'>
+						<PostForm editing='true' />
+					</Route>
 
-            <Route exact path='/'>
-            <Login /> 
-            </Route>
-            <Route exact path='/register'>
-            <Register /> 
-            </Route>
-        </div>
-      </ContextObject.Provider>
-    </Router>
-  );
+					<Route exact path='/'>
+						<Login />
+					</Route>
+					<Route exact path='/register'>
+						<Register />
+					</Route>
+				</div>
+			</ContextObject.Provider>
+		</Router>
+	);
 }
 
 export default App;

@@ -121,6 +121,8 @@ const PostForm = (props) => {
                     label="Image Link"
                     name="imageURL"
                     required
+                    value={formValues.imageURL}
+                    onChange={handleChanges}
                     />
                 <br></br>
                 <Button className={classes.btn} variant="contained" color="primary" type='submit'>{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>

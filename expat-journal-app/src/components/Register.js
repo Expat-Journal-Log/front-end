@@ -8,7 +8,7 @@ import {
 	TextField,
 	Button,
 } from '@material-ui/core';
-import useStyles from '../formStyle';
+import useStyles from '../styles/formStyle';
 
 import * as yup from 'yup';
 import logo from '../assets/expatLogLogo.svg';
@@ -81,7 +81,6 @@ export default function Register() {
 	const submitRegisterForm = (evt) => {
 		evt.preventDefault();
 		const newUser = {
-            
 			username: registerFormValues.username,
 			password: registerFormValues.password,
 			email: registerFormValues.email,
@@ -166,6 +165,7 @@ export default function Register() {
 								disabled={disabledSubmitButton}
 								variant='contained'
 								className={`${classes.formSection} ${classes.submitBtn}`}
+								type='submit'
 							>
 								Register
 							</Button>
