@@ -1,8 +1,8 @@
 .post-card{
     font-size: 1.8rem;
     display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap-reverse;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 50px;
 }

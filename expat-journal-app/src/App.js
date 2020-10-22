@@ -27,9 +27,22 @@ function App() {
 			.then((res) => {
 				console.log('App: useEffect: DT: ', res.data);
 
+        const posts = res.data.sort((a, b) => {
+          if(a.postId > b.postId){
+            console.log(true);
+            return -1;
+          }
+          else{
+            console.log(false);
+            return 1;
+          }
+        });
+
+        // const posts = res.data.reverse();
+
 				setPostState({
 					...postState,
-					posts: res.data,
+					posts: posts,
         });
         
 
