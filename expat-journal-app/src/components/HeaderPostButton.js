@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import PostAddIcon from '@material-ui/icons/PostAdd';
-// import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import '../styles/post.css';
 
 
@@ -18,7 +18,7 @@ function HeaderPostButton(props) {
                 <>
                     <Link to={`/edit-post/${id}`} className='editLink'>
                         <div className='editButtonText'>
-                        {/* <EditRoundedIcon className='editPostButton' fontSize='large'>Edit Post</EditRoundedIcon> */}
+                        <EditRoundedIcon className='editPostButton' fontSize='large'>Edit Post</EditRoundedIcon>
                         <p>Edit <br></br>Post</p>
                         </div>
                     </Link>
