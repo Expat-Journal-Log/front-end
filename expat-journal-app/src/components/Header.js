@@ -1,15 +1,23 @@
 import React from 'react'
 import logo from '../assets/expatLogLogo.svg';
 import HeaderPostButton from '../components/HeaderPostButton';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { Link } from 'react-router-dom'
 import '../App';
 
 function Header() {
+
+    const returnToHomePage = () => {
+        window.location.pathname = '/posts';
+    }
+
+
     return (
         <div className={`${(window.location.pathname === '/' || window.location.pathname === '/register') ? 'hide' : ''}`}>
             <header className='header'>
-                <img src={logo} />
+                <Link onClick={returnToHomePage} to='/posts'><img src={logo}/></Link>
                 <h2>Expat Journal</h2>
-                <HeaderPostButton  editing='false' />
+                <HeaderPostButton editing='false' />
             </header>
         </div>
     )

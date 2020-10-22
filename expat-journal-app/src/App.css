@@ -48,8 +48,8 @@ div.container {
 }
 
 .header img {
-	padding-bottom: 30px;
-
+	padding-left: 20px;
+	height: 130px;
 }
 
 
@@ -74,7 +74,6 @@ div.container {
 
 .buttonText {
 	font-size: 2.6rem;
-	
 }
 
 @media screen and (max-width: 500px) {
@@ -126,28 +125,6 @@ div.container {
 	width: 400px;
 }
 
-/*  POSTS STYLES */
-
-/* Create a Post Button STYLES */
-button.createPostButton {
-	position: absolute;
-	top: 55px;
-	right: 50px;
-	
-}
-
-
-
-/* MIGHT BE DUPLICATE 
-.createPostButton {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-top: 5%;
-  margin-bottom: 1%;
-  margin-right: 2.5%;
-}
-*/
 
 .createPostText {
 	margin-right: 1%;
@@ -162,14 +139,10 @@ button.createPostButton {
 	width: 100%;
 }
 
-svg.createPostButton {
-	font-size: 4rem;
-	margin: 0 auto;
-	color:black;
-	margin-top: 10px;
-}
+
 
 
 .dynamicButton {
 	padding-top: 10px;
 }
+
