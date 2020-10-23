@@ -26,6 +26,12 @@ function HeaderPostButton(props) {
         setAnchorEl(e.target);
     };
 
+    const handleNewPostNav = e => {
+        e.preventDefault();
+
+        window.location.pathname = '/create-post';
+    };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -65,7 +71,7 @@ function HeaderPostButton(props) {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>
+                                <MenuItem onClick={handleNewPostNav}>
                                     Create Post
                                 </MenuItem>
                                 <MenuItem onClick={logout}>

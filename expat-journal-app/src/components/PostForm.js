@@ -91,7 +91,7 @@ const PostForm = (props) => {
     };
 
     return(
-        <>
+        <div className='post-form'>
             <Typography className='dynamicButton' component='h3' variant='h4'>{editing === 'true' ? 'Edit Post' : 'Create a New Post'}</Typography>
             <form className='form-container' noValidate autoComplete='off' onSubmit={handleSubmit}>
                 <TextField 
@@ -127,7 +127,7 @@ const PostForm = (props) => {
                 <br></br>
                 <Button className={classes.btn} variant="contained" color="primary" type='submit'>{editing === 'true' ? 'Update Post' : 'Add Post'}</Button>
             </form>
-        </>
+        </div>
     );
 };
 
