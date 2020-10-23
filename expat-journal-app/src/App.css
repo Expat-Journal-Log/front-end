@@ -30,6 +30,17 @@ div.container {
   display: none;
 }
 
+.header-container{
+  background-color: rgba(252, 252, 252, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  box-shadow: 1px 1px 3px #999999;
+  height: 20%;
+}
+
 .header {
 	display: flex;
 	flex-direction: row;
@@ -37,21 +48,18 @@ div.container {
 	padding-left: 10px;
 	padding-top: 30px;
 	width: 100%;
-	padding-right: 80px;
-	border: 2px solid black;
+  padding-right: 80px;
+  height: 20%;
+	/* border: 2px solid black;
 	border-left: none;
 	border-right: none;
-	border-top: none;
-	height: 15vh;
-
-	
+	border-top: none; */
 }
 
 .header img {
 	padding-left: 20px;
 	height: 130px;
 }
-
 
 
 .header h2 {
@@ -72,6 +80,10 @@ div.container {
 	
 }
 
+.menu-container{
+	display: none;
+}
+
 .buttonText {
 	font-size: 2.6rem;
 }
@@ -81,14 +93,12 @@ div.container {
 		display: none;
 	}
 
-	
 	.header img {
 		height: 150px;
-	}
+  }
+  
 	.header {
-		
-		
-		height: 20vh;
+		height: 20%;
 	}
 
 	.buttonText {
@@ -97,12 +107,15 @@ div.container {
 
 	.link {
 		text-decoration: none;
-		
 	}
 
 	.link:visited {
 		color: black;
 		
+	}
+
+	.menu-container{
+		display: inline-block;
 	}
 }
 

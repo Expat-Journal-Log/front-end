@@ -4,7 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 190px;
 }
 
 .post-card img {
@@ -158,4 +158,10 @@ div.flex-container1 {
     font-size: 1rem;
     display: flex;
     justify-content: space-around;
+}
+
+@media screen and (max-width: 500px){
+    div.flex-container1{
+		display: none;
+	}
 }
