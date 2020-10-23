@@ -47,7 +47,7 @@ function HeaderPostButton(props) {
                         </Link>
                     </>
                 ) : (
-                    <>
+                    <div className='header-menu-container'>
                         <div className='menu-container'>
                             {/*This is to be used in the mobile view*/}
                                 <Button
@@ -91,7 +91,7 @@ function HeaderPostButton(props) {
                                 <p className='createPostText'>Log <br></br>out</p>
                             </div>
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </>
