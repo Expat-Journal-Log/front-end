@@ -161,7 +161,7 @@ div.flex-container1 {
 }
 
 @media screen and (max-width: 500px){
-    div.flex-container1{
+    div.header-menu{
 		display: none;
 	}
 }
