@@ -1,10 +1,10 @@
 .post-card{
     font-size: 1.8rem;
     display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap-reverse;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 250px;
 }
 
 .post-card img {
@@ -60,7 +60,7 @@ div.post:hover:after{
 /* Individual Post Styles */
 
 .singlePost {
-    padding-top: 50px;
+    padding-top: 250px;
     padding-bottom: 40px;
 }
 .singlePost h2 {
@@ -154,9 +154,14 @@ svg.buttonContainer {
 	margin-top: 10px;
 }
 
-div.flex-container1 {
+div.header-menu {
     font-size: 1rem;
     display: flex;
     justify-content: space-around;
-    
+}
+
+@media screen and (max-width: 500px){
+    div.header-menu{
+		display: none;
+	}
 }
